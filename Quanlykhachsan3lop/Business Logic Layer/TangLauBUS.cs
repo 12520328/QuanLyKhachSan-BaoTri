@@ -11,41 +11,41 @@ namespace Quanlykhachsan3lop.Business_Logic_Layer
 {
     class TangLauBUS
     {
-        private TangLauDAL tangLauDAO;
+        private TangLauDAL tangLauDAL;
 
         public TangLauBUS()
         {
-            tangLauDAO = new TangLauDAL();
+            tangLauDAL = new TangLauDAL();
         }
 
         // Lấy danh sách tầng lầu.
         public DataTable LayDanhSachTangLau()
         {
-            return tangLauDAO.LayDanhSachTangLau();
+            return tangLauDAL.LayDanhSachTangLau();
         }
 
         //Thêm một tầng lầu vào cơ sở dữ liệu.
         public void ThemTangLau(TangLauDTO tangLauDTO)
         {
-            tangLauDAO.ThemTangLau(tangLauDTO);
+            tangLauDAL.ThemTangLau(tangLauDTO);
         }
 
         // Xóa một tầng lầu khỏi cơ sở dữ liệu.
         public void XoaTangLau(TangLauDTO tangLauDTO)
         {
-            tangLauDAO.XoaTangLau(tangLauDTO);
+            tangLauDAL.XoaTangLau(tangLauDTO);
         }
 
         // Sửa thông tin một tầng lầu.
         public void SuaTangLau(TangLauDTO tangLauDTO)
         {
-            tangLauDAO.SuaTangLau(tangLauDTO);
+            tangLauDAL.SuaTangLau(tangLauDTO);
         }
 
         // Lấy MaTangLau cuối cùng trong bảng.
         public object LayMaTangLauCuoiBang()
         {
-            return tangLauDAO.LayMaTangLauCuoiBang();
+            return tangLauDAL.LayMaTangLauCuoiBang();
         }
     }
 }

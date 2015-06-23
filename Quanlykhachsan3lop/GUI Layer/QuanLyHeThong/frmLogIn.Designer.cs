@@ -46,9 +46,9 @@
             // 
             this.labelControl1.Location = new System.Drawing.Point(20, 57);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(68, 13);
+            this.labelControl1.Size = new System.Drawing.Size(75, 13);
             this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "Tên Tài Khoản";
+            this.labelControl1.Text = "Tên Đăng Nhập";
             // 
             // labelControl2
             // 
@@ -64,13 +64,16 @@
             this.txtTenTaiKhoan.Name = "txtTenTaiKhoan";
             this.txtTenTaiKhoan.Size = new System.Drawing.Size(239, 20);
             this.txtTenTaiKhoan.TabIndex = 1;
+            this.txtTenTaiKhoan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EnterPressed);
             // 
             // txtMatKhau
             // 
             this.txtMatKhau.Location = new System.Drawing.Point(121, 84);
             this.txtMatKhau.Name = "txtMatKhau";
+            this.txtMatKhau.Properties.UseSystemPasswordChar = true;
             this.txtMatKhau.Size = new System.Drawing.Size(239, 20);
             this.txtMatKhau.TabIndex = 2;
+            this.txtMatKhau.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EnterPressed);
             // 
             // btnDangNhap
             // 

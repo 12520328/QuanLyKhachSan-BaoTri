@@ -85,7 +85,7 @@ namespace Quanlykhachsan3lop
             return dr;
         }
 
-        // Trả về một String với câu lệnh select chỉ trả về một giá trị.
+        // Trả về một object với câu lệnh select chỉ trả về một giá trị.
         public static object getFistObject(string sql)
         {
             MoKetNoi();

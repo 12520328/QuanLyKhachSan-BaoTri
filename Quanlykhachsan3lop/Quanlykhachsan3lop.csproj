@@ -89,12 +89,14 @@
     <Compile Include="Business Logic Layer\ChinhSachBUS.cs" />
     <Compile Include="Business Logic Layer\LoaiGiaBUS.cs" />
     <Compile Include="Business Logic Layer\LoaiPhongBUS.cs" />
+    <Compile Include="Business Logic Layer\NguoiDungBUS.cs" />
     <Compile Include="Business Logic Layer\TangLauBUS.cs" />
     <Compile Include="Connector.cs" />
     <Compile Include="Data Access Layer\BangGiaDAL.cs" />
     <Compile Include="Data Access Layer\ChinhSachDAL.cs" />
     <Compile Include="Data Access Layer\LoaiGiaDAL.cs" />
     <Compile Include="Data Access Layer\LoaiPhongDAL.cs" />
+    <Compile Include="Data Access Layer\NguoiDungDAL.cs" />
     <Compile Include="Data Access Layer\TangLauDAL.cs" />
     <Compile Include="Data Transfer Object\BangGiaDTO.cs" />
     <Compile Include="Data Transfer Object\ChinhSachDTO.cs" />

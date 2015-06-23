@@ -37,7 +37,6 @@
             this.btnLamMoi = new DevExpress.XtraBars.BarLargeButtonItem();
             this.btnIn = new DevExpress.XtraBars.BarLargeButtonItem();
             this.btnXuat = new DevExpress.XtraBars.BarLargeButtonItem();
-            this.timKiem = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemSearchControl1 = new DevExpress.XtraEditors.Repository.RepositoryItemSearchControl();
             this.btnDong = new DevExpress.XtraBars.BarLargeButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -73,8 +72,7 @@
             this.barSubItem1,
             this.barButtonItem1,
             this.barButtonItem2,
-            this.barButtonItem3,
-            this.timKiem});
+            this.barButtonItem3});
             this.barManager1.MainMenu = this.bar2;
             this.barManager1.MaxItemId = 22;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -94,7 +92,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnLamMoi, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnIn, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXuat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(this.timKiem, true),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnDong, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.bar2.OptionsBar.AllowQuickCustomization = false;
             this.bar2.OptionsBar.DisableCustomization = true;
@@ -146,14 +143,6 @@
             this.btnXuat.Id = 5;
             this.btnXuat.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnXuat.LargeGlyph")));
             this.btnXuat.Name = "btnXuat";
-            // 
-            // timKiem
-            // 
-            this.timKiem.Caption = "Tìm Kiếm";
-            this.timKiem.Edit = this.repositoryItemSearchControl1;
-            this.timKiem.Id = 21;
-            this.timKiem.Name = "timKiem";
-            this.timKiem.Width = 245;
             // 
             // repositoryItemSearchControl1
             // 
@@ -276,7 +265,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
-        private DevExpress.XtraBars.BarEditItem timKiem;
         private DevExpress.XtraEditors.Repository.RepositoryItemSearchControl repositoryItemSearchControl1;
 
 

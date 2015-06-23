@@ -18,18 +18,8 @@ namespace Quanlykhachsan3lop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            frmLogIn fLogin = new frmLogIn();
-            if(fLogin.ShowDialog() == DialogResult.OK)
-            {
-                SplashScreenManager.ShowForm(typeof(SplashScreen1));
-                Thread.Sleep(4000);
-                SplashScreenManager.CloseForm();
-                Application.Run(new frmMain());
-            }
-            else
-            {
-                Application.Exit();
-            }
+            Application.Run(new frmLogIn());
+           
         }
     }
 }
