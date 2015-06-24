@@ -36,7 +36,7 @@
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ucMenu1 = new Quanlykhachsan3lop.Màn_Hình.ucMenu();
+            this.ucMenu = new Quanlykhachsan3lop.Màn_Hình.ucMenu();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -133,13 +133,13 @@
             this.layoutControlItem1.TextToControlDistance = 0;
             this.layoutControlItem1.TextVisible = false;
             // 
-            // ucMenu1
+            // ucMenu
             // 
-            this.ucMenu1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucMenu1.Location = new System.Drawing.Point(0, 0);
-            this.ucMenu1.Name = "ucMenu1";
-            this.ucMenu1.Size = new System.Drawing.Size(640, 26);
-            this.ucMenu1.TabIndex = 2;
+            this.ucMenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucMenu.Location = new System.Drawing.Point(0, 0);
+            this.ucMenu.Name = "ucMenu";
+            this.ucMenu.Size = new System.Drawing.Size(640, 26);
+            this.ucMenu.TabIndex = 2;
             // 
             // frmNhomDichVu
             // 
@@ -147,7 +147,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(640, 364);
             this.Controls.Add(this.layoutControl1);
-            this.Controls.Add(this.ucMenu1);
+            this.Controls.Add(this.ucMenu);
             this.Name = "frmNhomDichVu";
             this.Text = "Quản Lý Nhóm Dịch Vụ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -172,6 +172,6 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private Màn_Hình.ucMenu ucMenu1;
+        private Màn_Hình.ucMenu ucMenu;
     }
 }

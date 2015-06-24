@@ -1,4 +1,5 @@
-﻿using Quanlykhachsan3lop.Data_Transfer_Object;
+﻿using DevExpress.XtraEditors;
+using Quanlykhachsan3lop.Data_Transfer_Object;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,32 +21,26 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
         // Thêm một loại giá vào cơ sở dữ liệu.
         public void Insert(LoaiGiaDTO loaiGiaDTO)
         {
-            string sql = string.Format("insert into LOAIGIA(TenLoaiGia,GhiChu) Values('{0}','{1}')",
+            string sql = string.Format("insert into LOAIGIA(TenLoaiGia,GhiChu) Values(N'{0}',N'{1}')",
                 loaiGiaDTO.TenLoaiGia, loaiGiaDTO.GhiChu);
             Connector.ExecuteNonQuery(sql);
         }
 
         // Xóa một loại giá khỏi cơ sở dữ liệu.
-        public void Delete(LoaiGiaDTO loaiGiaDTO)
+        public void Delete(int maLoaiGia)
         {
-            string sql = string.Format("delete from LOAIGIA where MaLoaiGia = {0}", loaiGiaDTO.MaLoaiGia);
+            string sql = string.Format("delete from LOAIGIA where MaLoaiGia = {0}", maLoaiGia);
             Connector.ExecuteNonQuery(sql);
         }
 
         // Sưa thông tin một loại giá.
         public void Update(LoaiGiaDTO loaiGiaDTO)
         {
-            string sql = string.Format("update LOAIGIA set TenLoaiGia = '{0}', GhiChu = '{1}' where MaLoaiGia = {2}",
+            string sql = string.Format("update LOAIGIA set TenLoaiGia = N'{0}', GhiChu = N'{1}' where MaLoaiGia = {2}",
                loaiGiaDTO.TenLoaiGia, loaiGiaDTO.GhiChu, loaiGiaDTO.MaLoaiGia);
-            Connector.ExecuteNonQuery(sql);
+            Connector.ExecuteNonQuery(sql);            
         }
-
-        // Lấy lên thông tin loại giá nằm cuối bảng.
-        public object LayMaLoaiGiaCuoiBang()
-        {
-            string sql = string.Format("select MaLoaiGia from LOAIGIA where MaLoaiGia = (select max(MaLoaiGia) from LoaiGia)");
-            return Connector.getFistObject(sql);
-        }
+       
 
         //Kiểm tra tên loại giá đã có chưa
         public bool TonTaiTenLoaiGia(string TenLoaiGia)

@@ -87,9 +87,13 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.NewItemRowText = "Thêm dòng mới tại đây";
             this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
+            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
+            this.gridView1.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.gridView1_InvalidRowException);
+            this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
             this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
             // 
             // colMaLoaiGia
@@ -99,7 +103,7 @@
             this.colMaLoaiGia.Name = "colMaLoaiGia";
             this.colMaLoaiGia.OptionsColumn.ReadOnly = true;
             this.colMaLoaiGia.Visible = true;
-            this.colMaLoaiGia.VisibleIndex = 0;
+            this.colMaLoaiGia.VisibleIndex = 1;
             this.colMaLoaiGia.Width = 101;
             // 
             // colTenLoaiGia
@@ -108,7 +112,7 @@
             this.colTenLoaiGia.FieldName = "TenLoaiGia";
             this.colTenLoaiGia.Name = "colTenLoaiGia";
             this.colTenLoaiGia.Visible = true;
-            this.colTenLoaiGia.VisibleIndex = 1;
+            this.colTenLoaiGia.VisibleIndex = 2;
             this.colTenLoaiGia.Width = 312;
             // 
             // colGhiChu
@@ -117,7 +121,7 @@
             this.colGhiChu.FieldName = "GhiChu";
             this.colGhiChu.Name = "colGhiChu";
             this.colGhiChu.Visible = true;
-            this.colGhiChu.VisibleIndex = 2;
+            this.colGhiChu.VisibleIndex = 3;
             this.colGhiChu.Width = 313;
             // 
             // layoutControlGroup1
@@ -166,7 +170,7 @@
             this.Name = "frmQuanLyLoaiGia";
             this.Text = "Quản Lý Loại Giá";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmChinhSachTraPhong_Load);
+            this.Load += new System.EventHandler(this.frmQuanLyLoaiGia_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();

@@ -19,32 +19,34 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
         }
 
         // Thêm một người dùng vào cơ sở dữ liệu.
-        public void Insert(NguoiDungDTO nguoiDungDTO)
+        public bool Insert(NguoiDungDTO nguoiDungDTO)
         {
             if(nguoiDungDTO.TenNguoiDung == "admin")
             {
                 XtraMessageBox.Show("Tên người dùng đã tồn tại.", "Thông Báo");
-                return;
+                return false;
             }
             string sql = string.Format("insert into NGUOIDUNG(HoVaTen,TenNguoiDung,MatKhau,LoaiNguoiDung) Values('{0}','{1}','{2}','{3}')",
                 nguoiDungDTO.HoVaTen, nguoiDungDTO.TenNguoiDung, nguoiDungDTO.MatKhau, nguoiDungDTO.LoaiNguoiDung);
             Connector.ExecuteNonQuery(sql);
+            return true;
         }
 
         // Xóa một người dùng khỏi cơ sở dữ liệu.
-        public void Delete(NguoiDungDTO nguoiDungDTO)
+        public bool Delete(NguoiDungDTO nguoiDungDTO)
         {
             string sql = string.Format("delete from NGUOIDUNG where MaNguoiDung = {0}", nguoiDungDTO.MaNguoiDung);
             Connector.ExecuteNonQuery(sql);
+            return true;
         }
 
         // Sưa thông tin một người dùng.
-        public void Update(NguoiDungDTO nguoiDungDTO)
+        public bool Update(NguoiDungDTO nguoiDungDTO)
         {
             if (nguoiDungDTO.TenNguoiDung == "admin")
             {
                 XtraMessageBox.Show("Tên người dùng đã tồn tại.", "Thông Báo");
-                return;
+                return false;
             }
             string sql = string.Format("update NGUOIDUNG set TenNguoiDung = '{0}', MatKhau = '{1}', LoaiNguoiDung = '{2}' where MaNguoiDung = {3}",
                nguoiDungDTO.TenNguoiDung, nguoiDungDTO.MatKhau, nguoiDungDTO.LoaiNguoiDung, nguoiDungDTO.MaNguoiDung);
@@ -52,10 +54,12 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
             try
             {
                 Connector.ExecuteNonQuery(sql);
+                return true;
             }
             catch
             {
                 XtraMessageBox.Show("Tên người dùng đã tồn tại.", "Thông Báo");
+                return false;
             }
         }
 

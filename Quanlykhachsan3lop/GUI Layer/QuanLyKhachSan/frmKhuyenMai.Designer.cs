@@ -33,13 +33,13 @@
             this.colMaKhuyenMai = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTenKhuyenMai = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colLoaiKhuyenMai = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCachTinh = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imgTinhTrang = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.ucMenu = new Quanlykhachsan3lop.Màn_Hình.ucMenu();
-            this.colCachTinh = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgTinhTrang)).BeginInit();
@@ -53,12 +53,12 @@
             // gridControl1
             // 
             this.gridControl1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.gridControl1.Location = new System.Drawing.Point(14, 33);
+            this.gridControl1.Location = new System.Drawing.Point(5, 24);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.imgTinhTrang});
-            this.gridControl1.Size = new System.Drawing.Size(642, 342);
+            this.gridControl1.Size = new System.Drawing.Size(660, 360);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -103,6 +103,15 @@
             this.colLoaiKhuyenMai.VisibleIndex = 2;
             this.colLoaiKhuyenMai.Width = 143;
             // 
+            // colCachTinh
+            // 
+            this.colCachTinh.Caption = "Cách Tính";
+            this.colCachTinh.FieldName = "CongThuc";
+            this.colCachTinh.Name = "colCachTinh";
+            this.colCachTinh.Visible = true;
+            this.colCachTinh.VisibleIndex = 3;
+            this.colCachTinh.Width = 210;
+            // 
             // imgTinhTrang
             // 
             this.imgTinhTrang.AutoHeight = false;
@@ -137,11 +146,14 @@
             // 
             // layoutControlGroup2
             // 
+            this.layoutControlGroup2.AppearanceGroup.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.layoutControlGroup2.AppearanceGroup.Options.UseForeColor = true;
             this.layoutControlGroup2.CustomizationFormText = "THÔNG TIN VẬT TƯ";
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
+            this.layoutControlGroup2.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
             this.layoutControlGroup2.Size = new System.Drawing.Size(670, 389);
             this.layoutControlGroup2.Text = "THÔNG TIN KHUYẾN MÃI";
             // 
@@ -151,7 +163,7 @@
             this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(646, 346);
+            this.layoutControlItem1.Size = new System.Drawing.Size(664, 364);
             this.layoutControlItem1.Text = "layoutControlItem1";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextToControlDistance = 0;
@@ -164,15 +176,6 @@
             this.ucMenu.Name = "ucMenu";
             this.ucMenu.Size = new System.Drawing.Size(670, 26);
             this.ucMenu.TabIndex = 4;
-            // 
-            // colCachTinh
-            // 
-            this.colCachTinh.Caption = "Cách Tính";
-            this.colCachTinh.FieldName = "CongThuc";
-            this.colCachTinh.Name = "colCachTinh";
-            this.colCachTinh.Visible = true;
-            this.colCachTinh.VisibleIndex = 3;
-            this.colCachTinh.Width = 210;
             // 
             // frmKhuyenMai
             // 

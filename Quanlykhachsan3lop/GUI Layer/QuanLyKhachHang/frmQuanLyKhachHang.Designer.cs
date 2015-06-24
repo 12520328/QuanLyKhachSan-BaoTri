@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             this.ucMenu = new Quanlykhachsan3lop.Màn_Hình.ucMenu();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
@@ -35,14 +36,12 @@
             this.colMaKhachHang = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTenKhachHang = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colGioiTinh = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.checkNam = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.cbbGioiTinh = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.colNgaySinh = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dtNgaySinh = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.colCMND = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDiaChi = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSoDienThoai = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colKhachHangDen = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.checkKhachHangDen = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -50,10 +49,9 @@
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkNam)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbbGioiTinh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNgaySinh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNgaySinh.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkKhachHangDen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -81,19 +79,19 @@
             // gridControl1
             // 
             this.gridControl1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(14, 33);
+            gridLevelNode1.RelationName = "Level1";
+            this.gridControl1.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
+            gridLevelNode1});
+            this.gridControl1.Location = new System.Drawing.Point(5, 24);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.checkKhachHangDen,
-            this.checkNam,
+            this.cbbGioiTinh,
             this.dtNgaySinh});
-            this.gridControl1.Size = new System.Drawing.Size(877, 405);
-            this.gridControl1.TabIndex = 15;
+            this.gridControl1.Size = new System.Drawing.Size(895, 423);
+            this.gridControl1.TabIndex = 5;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-            this.gridControl1.Visible = false;
             // 
             // gridView1
             // 
@@ -104,12 +102,18 @@
             this.colNgaySinh,
             this.colCMND,
             this.colDiaChi,
-            this.colSoDienThoai,
-            this.colKhachHangDen});
+            this.colSoDienThoai});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.ReadOnly = true;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
+            this.gridView1.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.gridView1_InvalidRowException);
+            this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
+            this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
+            this.gridView1.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.gridView1_ValidatingEditor);
+            this.gridView1.InvalidValueException += new DevExpress.XtraEditors.Controls.InvalidValueExceptionEventHandler(this.gridView1_InvalidValueException);
             // 
             // colMaKhachHang
             // 
@@ -118,7 +122,7 @@
             this.colMaKhachHang.Name = "colMaKhachHang";
             this.colMaKhachHang.OptionsColumn.ReadOnly = true;
             this.colMaKhachHang.Visible = true;
-            this.colMaKhachHang.VisibleIndex = 0;
+            this.colMaKhachHang.VisibleIndex = 1;
             // 
             // colTenKhachHang
             // 
@@ -126,22 +130,26 @@
             this.colTenKhachHang.FieldName = "TenKhachHang";
             this.colTenKhachHang.Name = "colTenKhachHang";
             this.colTenKhachHang.Visible = true;
-            this.colTenKhachHang.VisibleIndex = 1;
+            this.colTenKhachHang.VisibleIndex = 2;
             // 
             // colGioiTinh
             // 
             this.colGioiTinh.Caption = "Giới Tính";
-            this.colGioiTinh.ColumnEdit = this.checkNam;
+            this.colGioiTinh.ColumnEdit = this.cbbGioiTinh;
             this.colGioiTinh.FieldName = "GioiTinh";
             this.colGioiTinh.Name = "colGioiTinh";
             this.colGioiTinh.Visible = true;
-            this.colGioiTinh.VisibleIndex = 2;
+            this.colGioiTinh.VisibleIndex = 3;
             // 
-            // checkNam
+            // cbbGioiTinh
             // 
-            this.checkNam.AutoHeight = false;
-            this.checkNam.Name = "checkNam";
-            this.checkNam.NullText = "Nam";
+            this.cbbGioiTinh.AutoHeight = false;
+            this.cbbGioiTinh.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbbGioiTinh.Items.AddRange(new object[] {
+            "Nam",
+            "Nữ"});
+            this.cbbGioiTinh.Name = "cbbGioiTinh";
             // 
             // colNgaySinh
             // 
@@ -150,7 +158,7 @@
             this.colNgaySinh.FieldName = "NgaySinh";
             this.colNgaySinh.Name = "colNgaySinh";
             this.colNgaySinh.Visible = true;
-            this.colNgaySinh.VisibleIndex = 3;
+            this.colNgaySinh.VisibleIndex = 5;
             // 
             // dtNgaySinh
             // 
@@ -163,7 +171,7 @@
             // 
             // colCMND
             // 
-            this.colCMND.Caption = "Chứng Minh Nhân Dân";
+            this.colCMND.Caption = "Số CMND";
             this.colCMND.FieldName = "CMND";
             this.colCMND.Name = "colCMND";
             this.colCMND.Visible = true;
@@ -175,29 +183,15 @@
             this.colDiaChi.FieldName = "DiaChi";
             this.colDiaChi.Name = "colDiaChi";
             this.colDiaChi.Visible = true;
-            this.colDiaChi.VisibleIndex = 5;
+            this.colDiaChi.VisibleIndex = 6;
             // 
             // colSoDienThoai
             // 
             this.colSoDienThoai.Caption = "Số Điện Thoại";
-            this.colSoDienThoai.FieldName = "SoDienThoai";
+            this.colSoDienThoai.FieldName = "SDT";
             this.colSoDienThoai.Name = "colSoDienThoai";
             this.colSoDienThoai.Visible = true;
-            this.colSoDienThoai.VisibleIndex = 6;
-            // 
-            // colKhachHangDen
-            // 
-            this.colKhachHangDen.Caption = "Khách Hàng Đen";
-            this.colKhachHangDen.ColumnEdit = this.checkKhachHangDen;
-            this.colKhachHangDen.FieldName = "KhachHangDen";
-            this.colKhachHangDen.Name = "colKhachHangDen";
-            this.colKhachHangDen.Visible = true;
-            this.colKhachHangDen.VisibleIndex = 7;
-            // 
-            // checkKhachHangDen
-            // 
-            this.checkKhachHangDen.AutoHeight = false;
-            this.checkKhachHangDen.Name = "checkKhachHangDen";
+            this.colSoDienThoai.VisibleIndex = 7;
             // 
             // layoutControlGroup1
             // 
@@ -222,6 +216,7 @@
             this.layoutControlItem1});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
+            this.layoutControlGroup2.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
             this.layoutControlGroup2.Size = new System.Drawing.Size(905, 452);
             this.layoutControlGroup2.Text = "Danh Sách Khách Hàng";
             // 
@@ -231,7 +226,7 @@
             this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(881, 409);
+            this.layoutControlItem1.Size = new System.Drawing.Size(899, 427);
             this.layoutControlItem1.Text = "layoutControlItem1";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextToControlDistance = 0;
@@ -251,10 +246,9 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkNam)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbbGioiTinh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNgaySinh.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNgaySinh)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkKhachHangDen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -266,22 +260,20 @@
 
         private Màn_Hình.ucMenu ucMenu;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colMaKhachHang;
         private DevExpress.XtraGrid.Columns.GridColumn colTenKhachHang;
         private DevExpress.XtraGrid.Columns.GridColumn colGioiTinh;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox cbbGioiTinh;
         private DevExpress.XtraGrid.Columns.GridColumn colNgaySinh;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit dtNgaySinh;
         private DevExpress.XtraGrid.Columns.GridColumn colCMND;
         private DevExpress.XtraGrid.Columns.GridColumn colDiaChi;
         private DevExpress.XtraGrid.Columns.GridColumn colSoDienThoai;
-        private DevExpress.XtraGrid.Columns.GridColumn colKhachHangDen;
-        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit checkKhachHangDen;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit checkNam;
-        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit dtNgaySinh;
 
 
 

@@ -26,26 +26,26 @@ namespace Quanlykhachsan3lop.Business_Logic_Layer
         }
 
         //Thêm một người dùng vào cơ sở dữ liệu.
-        public void Insert(NguoiDungDTO nguoiDungDTO)
+        public bool Insert(NguoiDungDTO nguoiDungDTO)
         {
             if(nguoiDungDAL.TonTaiTenNguoiDung(nguoiDungDTO.TenNguoiDung))
             {
                 XtraMessageBox.Show("Tên đăng nhập đã tồn tại.", "Thông Báo");
-                return;
+                return false;
             }
-            nguoiDungDAL.Insert(nguoiDungDTO);
+            return nguoiDungDAL.Insert(nguoiDungDTO);
         }
 
         // Xóa một người dùng khỏi cơ sở dữ liệu.
-        public void Delete(NguoiDungDTO nguoiDungDTO)
+        public bool Delete(NguoiDungDTO nguoiDungDTO)
         {
-            nguoiDungDAL.Delete(nguoiDungDTO);
+            return nguoiDungDAL.Delete(nguoiDungDTO);
         }
 
         // Sửa thông tin một người dùng.
-        public void Update(NguoiDungDTO nguoiDungDTO)
+        public bool Update(NguoiDungDTO nguoiDungDTO)
         {
-            nguoiDungDAL.Update(nguoiDungDTO);
+            return nguoiDungDAL.Update(nguoiDungDTO);
         }
 
         // Lấy MaNguoiDung cuối cùng trong bảng.

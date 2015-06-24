@@ -1,5 +1,8 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
 using Quanlykhachsan3lop.Business_Logic_Layer;
 using Quanlykhachsan3lop.Data_Transfer_Object;
@@ -20,24 +23,18 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyKhachSan
     public partial class frmQuanLyLoaiGia : Form
     {
         DataTable dt = new DataTable();
-        LoaiGiaDTO _loaiGiaDTO = new LoaiGiaDTO();
         LoaiGiaBUS _loaiGiaBUS = new LoaiGiaBUS();
 
         public frmQuanLyLoaiGia()
         {
-            InitializeComponent();
-
-             // Định nghĩa Datatable tương thích với GridView.
-            dt.Columns.Add("MaChinhSach", typeof(int));
-            dt.Columns.Add("ThoiGianQuyDinh", typeof(DateTime));
-            dt.Columns.Add("PhuThu", typeof(decimal));
+            InitializeComponent();            
 
             ucMenu.btnXoa.Enabled = false;
         }
 
-        private void frmChinhSachTraPhong_Load(object sender, EventArgs e)
+        private void frmQuanLyLoaiGia_Load(object sender, EventArgs e)
         {
-            LamMoi();
+            LoadDuLieu();
 
             // Bắt sự kiện cho các button trong user control.
             ucMenu.btnChiDoc.ItemClick += ucMenu_ChiDoc_Clicked;
@@ -47,7 +44,13 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyKhachSan
             ucMenu.btnXuat.ItemClick += ucMenu_Xuat_Clicked;
             ucMenu.btnDong.ItemClick += ucMenu_Dong_Clicked;
         }
+        private void LoadDuLieu()
+        {
+            dt = _loaiGiaBUS.LayDanhSachLoaiGia();
+            gridControl1.DataSource = dt;
+        }
 
+        #region "Xử lý sự kiện các Button trong Menu"
         private void ucMenu_Dong_Clicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.Close();
@@ -66,28 +69,10 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyKhachSan
         private void ucMenu_LamMoi_Clicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(WaitForm1));            
-            LamMoi();
+            LoadDuLieu();
             Thread.Sleep(1000);
             SplashScreenManager.CloseForm();
         }
-
-        private void LamMoi()
-        {
-            dt = _loaiGiaBUS.LayDanhSachLoaiGia();
-            gridControl1.DataSource = dt;
-        }
-
-        private void ucMenu_Xoa_Clicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            DialogResult dg = MessageBox.Show("Bạn có chắc muốn xóa dòng này không? ", "Xóa dữ liệu", MessageBoxButtons.OKCancel);
-            if (dg == DialogResult.Cancel)
-            {
-                return;
-            }
-            _loaiGiaBUS.Delete(_loaiGiaDTO);
-            LamMoi();
-        }
-
         private void ucMenu_ChiDoc_Clicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (gridView1.OptionsBehavior.ReadOnly == true)
@@ -107,59 +92,108 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyKhachSan
                 gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.None;
             }
         }
+
+        private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            if (gridView1.GetSelectedRows().Length > 0)
+            {
+                ucMenu.btnXoa.Enabled = true;
+            }
+            else
+            {
+                ucMenu.btnXoa.Enabled = false;
+            }
+        }
+
+
+        #endregion                
+
+        #region "Thêm, Xóa, Sửa"
+        private void ucMenu_Xoa_Clicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            DialogResult dg = MessageBox.Show("Bạn có chắc muốn xóa dòng này không? ", "Xóa dữ liệu", MessageBoxButtons.OKCancel);
+            if (dg == DialogResult.Cancel)
+            {
+                return;
+            }
+            int[] selectIndexs = gridView1.GetSelectedRows();
+            for (int i = 0; i < selectIndexs.Length; i++)
+            {
+                int maLoaiGia = int.Parse(gridView1.GetRowCellValue(i, colMaLoaiGia).ToString());
+                _loaiGiaBUS.Delete(maLoaiGia);
+            }
+            XtraMessageBox.Show("Xóa dữ liệu thành công.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoadDuLieu();
+        }
+
         // Bắt sự kiện RowUpdate để thực hiện thêm chỉnh sửa một hàng.
         private void gridView1_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
         {
             if (e.RowHandle == GridControl.NewItemRowHandle)
             {
-                DataRow newDr = gridView1.GetDataRow(gridView1.DataRowCount - 1);
-                try
+                DataRow newDr = gridView1.GetDataRow(gridView1.DataRowCount - 1);                          
+                if(_loaiGiaBUS.Insert(GetLoaiGia(newDr)))
                 {
-                    _loaiGiaDTO.TenLoaiGia = (string)newDr["TenLoaiGia"];
-                    _loaiGiaDTO.GhiChu = (string)newDr["GhiChu"];
+                    XtraMessageBox.Show("Thêm mới thành công.", "Thông Báo");
                 }
-                catch { }
-                if (_loaiGiaBUS.TonTaiTenLoaiGia(_loaiGiaDTO.TenLoaiGia) == true)
-                {
-                    XtraMessageBox.Show("Tên loại giá bạn nhập đã tồn tại. Vui lòng nhập tên khác.","Thông Báo Lỗi");
-                    LamMoi();
-                    return;
-                }
-                _loaiGiaBUS.Insert(_loaiGiaDTO);
             }
             else
             {
                 DialogResult dg = MessageBox.Show("Bạn có chắc muốn sửa dòng này không ? ", "Sửa dữ liệu", MessageBoxButtons.OKCancel);
                 if (dg == DialogResult.Cancel)
                 {
-                    LamMoi();
+                    LoadDuLieu();
                     return;                  
                 }
-                DataRow dr = gridView1.GetDataRow(e.RowHandle);
-                _loaiGiaDTO.MaLoaiGia = (int)dr["MaLoaiGia"];
-                _loaiGiaDTO.TenLoaiGia = (string)dr["TenLoaiGia"];
-                if (_loaiGiaBUS.TonTaiTenLoaiGia(_loaiGiaDTO.TenLoaiGia) == true)
+                DataRow dr = gridView1.GetDataRow(e.RowHandle);               
+                if (_loaiGiaBUS.Update(GetLoaiGia(dr)))
                 {
-                    XtraMessageBox.Show("Tên loại giá bạn nhập đã tồn tại. Vui lòng nhập tên khác.","Thông Báo Lỗi");
-                    LamMoi();
-                    return;
+                    XtraMessageBox.Show("Cập nhật thành công.", "Thông Báo");
                 }
-                _loaiGiaDTO.GhiChu = (string)dr["GhiChu"];
-                _loaiGiaBUS.Update(_loaiGiaDTO);
             }
-            LamMoi();
+            LoadDuLieu();
         }
 
-        private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        private LoaiGiaDTO GetLoaiGia(DataRow dr)
         {
-            if (e.RowHandle > 0)
+            if(dr == null)
             {
-                DataRow dr = gridView1.GetDataRow(e.RowHandle);
-                _loaiGiaDTO.MaLoaiGia = (int)dr["MaLoaiGia"];
-                _loaiGiaDTO.TenLoaiGia = (string)dr["TenLoaiGia"];
-                _loaiGiaDTO.GhiChu = (string)dr["GhiChu"];
-                ucMenu.btnXoa.Enabled = true;
+                return null;
+            }
+            LoaiGiaDTO  _loaiGia = new LoaiGiaDTO();
+            _loaiGia.MaLoaiGia = string.IsNullOrEmpty(dr["MaLoaiGia"].ToString()) ? -1 : int.Parse(dr["MaLoaiGia"].ToString());          
+            _loaiGia.TenLoaiGia = string.IsNullOrEmpty(dr["TenLoaiGia"].ToString()) ? "" : (string)dr["TenLoaiGia"];
+            _loaiGia.GhiChu = string.IsNullOrEmpty(dr["GhiChu"].ToString()) ? "" : (string)dr["GhiChu"];
+            return _loaiGia;
+        }
+        #endregion
+
+        #region "Kiểm tra dữ liệu hợp lệ"
+        private void gridView1_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
+        {
+            e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction;
+            XtraMessageBox.Show(e.ErrorText, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void gridView1_ValidateRow(object sender, ValidateRowEventArgs e)
+        {
+            GridView view = sender as GridView;
+            view.ClearColumnErrors();
+            foreach (GridColumn col in ((ColumnView)view).Columns)
+            {
+                if (col.FieldName == "TenLoaiGia")
+                {
+                    if (view.GetRowCellValue(e.RowHandle, col) == null || string.IsNullOrEmpty(view.GetRowCellValue(e.RowHandle, col).ToString()))
+                    {
+                        e.Valid = false;
+                        e.ErrorText = "Giá trị không được để trống";
+                        view.SetColumnError(col, e.ErrorText);
+                    }
+                }
             }
         }
+        #endregion
+
+
     }
 }

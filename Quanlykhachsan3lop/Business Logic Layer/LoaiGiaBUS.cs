@@ -1,4 +1,5 @@
-﻿using Quanlykhachsan3lop.Data_Access_Layer;
+﻿using DevExpress.XtraEditors;
+using Quanlykhachsan3lop.Data_Access_Layer;
 using Quanlykhachsan3lop.Data_Transfer_Object;
 using System;
 using System.Collections.Generic;
@@ -25,28 +26,38 @@ namespace Quanlykhachsan3lop.Business_Logic_Layer
         }
 
         //Thêm một loại giá vào cơ sở dữ liệu.
-        public void Insert(LoaiGiaDTO loaiGiaDTO)
+        public bool Insert(LoaiGiaDTO loaiGiaDTO)
         {
+            if (loaiGiaDTO == null)
+            {
+                return false;
+            }
+            if (TonTaiTenLoaiGia(loaiGiaDTO.TenLoaiGia) == true)
+            {
+                XtraMessageBox.Show("Tên loại giá bạn nhập đã tồn tại. Vui lòng nhập tên khác.", "Thông Báo Lỗi");
+                return false;
+            }
             loaiGiaDAL.Insert(loaiGiaDTO);
+            return true;
         }
 
         // Xóa một loại giá khỏi cơ sở dữ liệu.
-        public void Delete(LoaiGiaDTO loaiGiaDTO)
+        public void Delete(int maLoaiGia)
         {
-            loaiGiaDAL.Delete(loaiGiaDTO);
+            loaiGiaDAL.Delete(maLoaiGia);
         }
 
         // Sửa thông tin một loại giá.
-        public void Update(LoaiGiaDTO loaiGiaDTO)
+        public bool Update(LoaiGiaDTO loaiGiaDTO)
         {
+            if(loaiGiaDTO == null)
+            {
+                return false;
+            }
             loaiGiaDAL.Update(loaiGiaDTO);
+            return true;
         }
-
-        // Lấy MaLoaiGia cuối cùng trong bảng.
-        public object LayMaLoaiGiaCuoiBang()
-        {
-            return loaiGiaDAL.LayMaLoaiGiaCuoiBang();
-        }
+      
         //Kiểm tra tồn tại tên loại giá
         public bool TonTaiTenLoaiGia(string TenLoaiGia)
         {

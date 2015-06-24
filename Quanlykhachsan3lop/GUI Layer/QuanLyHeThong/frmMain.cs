@@ -382,7 +382,6 @@ namespace Quanlykhachsan3lop.Màn_Hình
                     DisableControls(f);
                 }
                 f.Show();
-                f.Show();
             }
         }
         #endregion

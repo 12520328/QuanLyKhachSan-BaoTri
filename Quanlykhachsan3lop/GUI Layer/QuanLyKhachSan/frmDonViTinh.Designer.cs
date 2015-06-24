@@ -50,10 +50,10 @@
             // gridControl1
             // 
             this.gridControl1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.gridControl1.Location = new System.Drawing.Point(14, 33);
+            this.gridControl1.Location = new System.Drawing.Point(5, 24);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(726, 408);
+            this.gridControl1.Size = new System.Drawing.Size(744, 426);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -66,8 +66,16 @@
             this.colGhiChu});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.NewItemRowText = "Thêm dữ liệu mới tại đây...";
+            this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
+            this.gridView1.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.gridView1_InvalidRowException);
+            this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
+            this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
             // 
             // colMaDonViTinh
             // 
@@ -76,7 +84,7 @@
             this.colMaDonViTinh.Name = "colMaDonViTinh";
             this.colMaDonViTinh.OptionsColumn.ReadOnly = true;
             this.colMaDonViTinh.Visible = true;
-            this.colMaDonViTinh.VisibleIndex = 0;
+            this.colMaDonViTinh.VisibleIndex = 1;
             this.colMaDonViTinh.Width = 135;
             // 
             // colTenDonViTinh
@@ -85,7 +93,7 @@
             this.colTenDonViTinh.FieldName = "TenDonViTinh";
             this.colTenDonViTinh.Name = "colTenDonViTinh";
             this.colTenDonViTinh.Visible = true;
-            this.colTenDonViTinh.VisibleIndex = 1;
+            this.colTenDonViTinh.VisibleIndex = 2;
             this.colTenDonViTinh.Width = 250;
             // 
             // colGhiChu
@@ -94,7 +102,7 @@
             this.colGhiChu.FieldName = "GhiChu";
             this.colGhiChu.Name = "colGhiChu";
             this.colGhiChu.Visible = true;
-            this.colGhiChu.VisibleIndex = 2;
+            this.colGhiChu.VisibleIndex = 3;
             this.colGhiChu.Width = 253;
             // 
             // layoutControl1
@@ -124,11 +132,14 @@
             // 
             // layoutControlGroup2
             // 
+            this.layoutControlGroup2.AppearanceGroup.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.layoutControlGroup2.AppearanceGroup.Options.UseForeColor = true;
             this.layoutControlGroup2.CustomizationFormText = "THÔNG TIN VẬT TƯ";
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
+            this.layoutControlGroup2.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
             this.layoutControlGroup2.Size = new System.Drawing.Size(754, 455);
             this.layoutControlGroup2.Text = "THÔNG TIN ĐƠN VỊ TÍNH";
             // 
@@ -138,7 +149,7 @@
             this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(730, 412);
+            this.layoutControlItem1.Size = new System.Drawing.Size(748, 430);
             this.layoutControlItem1.Text = "layoutControlItem1";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextToControlDistance = 0;
@@ -162,6 +173,7 @@
             this.Name = "frmDonViTinh";
             this.Text = "Đơn Vị Tính";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmDonViTinh_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

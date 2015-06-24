@@ -33,23 +33,23 @@
             this.colMaTinhTrangPhong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTenTinhTrang = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHinhAnh = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.imgTinhTrang = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
+            this.colMauSac = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colorTinhTrang = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.ucMenu = new Quanlykhachsan3lop.Màn_Hình.ucMenu();
-            this.colMauSac = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colorTinhTrang = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
+            this.picEdit = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgTinhTrang)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorTinhTrang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorTinhTrang)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picEdit)).BeginInit();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -59,8 +59,8 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.imgTinhTrang,
-            this.colorTinhTrang});
+            this.colorTinhTrang,
+            this.picEdit});
             this.gridControl1.Size = new System.Drawing.Size(708, 389);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -100,18 +100,27 @@
             // colHinhAnh
             // 
             this.colHinhAnh.Caption = "Hình Ảnh";
-            this.colHinhAnh.ColumnEdit = this.imgTinhTrang;
+            this.colHinhAnh.ColumnEdit = this.picEdit;
             this.colHinhAnh.Name = "colHinhAnh";
             this.colHinhAnh.Visible = true;
             this.colHinhAnh.VisibleIndex = 2;
             this.colHinhAnh.Width = 162;
             // 
-            // imgTinhTrang
+            // colMauSac
             // 
-            this.imgTinhTrang.AutoHeight = false;
-            this.imgTinhTrang.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.colMauSac.Caption = "Màu Sắc";
+            this.colMauSac.ColumnEdit = this.colorTinhTrang;
+            this.colMauSac.Name = "colMauSac";
+            this.colMauSac.Visible = true;
+            this.colMauSac.VisibleIndex = 3;
+            this.colMauSac.Width = 157;
+            // 
+            // colorTinhTrang
+            // 
+            this.colorTinhTrang.AutoHeight = false;
+            this.colorTinhTrang.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.imgTinhTrang.Name = "imgTinhTrang";
+            this.colorTinhTrang.Name = "colorTinhTrang";
             // 
             // layoutControl1
             // 
@@ -168,21 +177,10 @@
             this.ucMenu.Size = new System.Drawing.Size(736, 26);
             this.ucMenu.TabIndex = 4;
             // 
-            // colMauSac
+            // picEdit
             // 
-            this.colMauSac.Caption = "Màu Sắc";
-            this.colMauSac.ColumnEdit = this.colorTinhTrang;
-            this.colMauSac.Name = "colMauSac";
-            this.colMauSac.Visible = true;
-            this.colMauSac.VisibleIndex = 3;
-            this.colMauSac.Width = 157;
-            // 
-            // colorTinhTrang
-            // 
-            this.colorTinhTrang.AutoHeight = false;
-            this.colorTinhTrang.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.colorTinhTrang.Name = "colorTinhTrang";
+            this.picEdit.Name = "picEdit";
+            this.picEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             // 
             // frmTinhTrangPhong
             // 
@@ -194,15 +192,16 @@
             this.Name = "frmTinhTrangPhong";
             this.Text = "Tình Trạng Phòng";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmTinhTrangPhong_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgTinhTrang)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorTinhTrang)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorTinhTrang)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picEdit)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -214,7 +213,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colMaTinhTrangPhong;
         private DevExpress.XtraGrid.Columns.GridColumn colTenTinhTrang;
         private DevExpress.XtraGrid.Columns.GridColumn colHinhAnh;
-        private DevExpress.XtraEditors.Repository.RepositoryItemImageEdit imgTinhTrang;
         private DevExpress.XtraGrid.Columns.GridColumn colMauSac;
         private DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit colorTinhTrang;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
@@ -222,5 +220,6 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private Màn_Hình.ucMenu ucMenu;
+        private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit picEdit;
     }
 }

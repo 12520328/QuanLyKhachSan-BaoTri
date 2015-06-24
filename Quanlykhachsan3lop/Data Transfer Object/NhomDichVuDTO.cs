@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Quanlykhachsan3lop.Data_Transfer_Object
 {
-    public class NhomDichVu
+    public class NhomDichVuDTO
     {
-        private int _maNhomDichVu;        
+        private int _nhomDichVu;        
         private string _tenNhomDichVu;
 
         #region "Properties"
-        public int MaNhomDichVu
+        public int NhomDichVu
         {
-            get { return _maNhomDichVu; }
-            set { _maNhomDichVu = value; }
+            get { return _nhomDichVu; }
+            set { _nhomDichVu = value; }
         }
         public string TenNhomDichVu
         {

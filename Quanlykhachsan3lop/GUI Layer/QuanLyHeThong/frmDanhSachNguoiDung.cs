@@ -93,12 +93,12 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyHeThong
 
         private void ucMenu_Xuat_Clicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            throw new NotImplementedException();
+            PrintAndExport.ExportXls(gridControl1, "DANH SÁCH NGƯỜI DÙNG");
         }
 
         private void ucMenu_In_Clicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            throw new NotImplementedException();
+            PrintAndExport.ShowGridPreview(gridControl1, "DANH SÁCH NGƯỜI DÙNG");
         }
 
         private void ucMenu_LamMoi_Clicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -187,11 +187,14 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyHeThong
                             nguoiDungDTO.LoaiNguoiDung = "NguoiDungMoi";
                         }
                     }
-                    nguoiDungBUS.Insert(nguoiDungDTO);
+                    if (nguoiDungBUS.Insert(nguoiDungDTO))
+                    {
+                        XtraMessageBox.Show("Thêm mới thành công.", "Thông Báo");
+                    }
                 }
                 catch
                 {
-                    XtraMessageBox.Show("Vui lòng chọn quyền đăng nhập.", "Thông Báo");                   
+                    XtraMessageBox.Show("Vui lòng chọn quyền đăng nhập.", "Thông Báo");
                 }
             }
             #endregion
@@ -228,11 +231,14 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyHeThong
                             nguoiDungDTO.LoaiNguoiDung = "NguoiDungMoi";
                         }
                     }
-                    nguoiDungBUS.Update(nguoiDungDTO);
+                    if (nguoiDungBUS.Update(nguoiDungDTO))
+                    {
+                        XtraMessageBox.Show("Cập nhật thành công.", "Thông Báo");
+                    }
                 }
                 catch
                 {
-                    XtraMessageBox.Show("Vui lòng chọn quyền đăng nhập.", "Thông Báo");                 
+                    XtraMessageBox.Show("Vui lòng chọn quyền đăng nhập.", "Thông Báo");
                 }                
                 #endregion
             }

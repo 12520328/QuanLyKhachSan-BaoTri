@@ -12,8 +12,10 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
         private string _tenKhachHang;        
         private string _gioiTinh;        
         private string _cMND;      
-        private DateTime _ngaySinh;        
-        private string _diaChi;       
+        private DateTime _ngaySinh;
+        private string _diaChi;
+
+          
         private string _soDienThoai;
 
         #region "Properties"
@@ -42,6 +44,11 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
             get { return _ngaySinh; }
             set { _ngaySinh = value; }
         }
+        public string DiaChi
+        {
+            get { return _diaChi; }
+            set { _diaChi = value; }
+        }     
         public string SoDienThoai
         {
             get { return _soDienThoai; }

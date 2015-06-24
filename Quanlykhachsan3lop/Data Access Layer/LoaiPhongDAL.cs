@@ -18,25 +18,28 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
         }
 
         // Thêm một loại phòng vào cơ sở dữ liệu.
-        public void Insert(LoaiPhongDTO loaiPhongDTO)
+        public bool Insert(LoaiPhongDTO loaiPhongDTO)
         {
             string sql = string.Format("insert into LOAIPHONG(TenLoaiPhong,MaBangGia,SoNguoiToiDa) Values('{0}','{1}','{2}')", loaiPhongDTO.TenLoaiPhong,loaiPhongDTO.MaBangGia,loaiPhongDTO.SoLuongNguoiToiDa);
             Connector.ExecuteNonQuery(sql);
+            return true;
         }
 
         // Xóa một loại phòng khỏi cơ sở dữ liệu.
-        public void Delete(LoaiPhongDTO loaiPhongDTO)
+        public bool Delete(LoaiPhongDTO loaiPhongDTO)
         {
             string sql = string.Format("delete from LOAIPHONG where MaLoaiPhong = {0}", loaiPhongDTO.MaLoaiPhong);
             Connector.ExecuteNonQuery(sql);
+            return true;
         }
 
         // Sưa thông tin một loại phòng.
-        public void Update(LoaiPhongDTO loaiPhongDTO)
+        public bool Update(LoaiPhongDTO loaiPhongDTO)
         {
             string sql = string.Format("update LOAIPHONG set TenLoaiPhong = {0}, MaBangGia = {1}, SoNguoiToiDa = {2} where MaTangLau = {3}",
                loaiPhongDTO.TenLoaiPhong,loaiPhongDTO.MaBangGia,loaiPhongDTO.SoLuongNguoiToiDa,loaiPhongDTO.MaLoaiPhong);
             Connector.ExecuteNonQuery(sql);
+            return true;
         }
 
         // Lấy lên thông tin loại phòng nằm cuối bảng.

@@ -20,7 +20,8 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
         // Thêm một bảng giá vào cơ sở dữ liệu.
         public void Insert(BangGiaDTO bangGiaDTO)
         {
-            string sql = string.Format("insert into BANGGIA(TenBangGia,NgayBatDau,NgayKetThuc) Values('{0}','{1}','{2}')", bangGiaDTO.TenBangGia, bangGiaDTO.NgayBatDau, bangGiaDTO.NgayKetThuc);
+            string sql = string.Format("insert into BANGGIA(TenBangGia,NgayBatDau,NgayKetThuc) Values('N{0}','{1}','{2}')",
+                bangGiaDTO.TenBangGia, bangGiaDTO.NgayBatDau, bangGiaDTO.NgayKetThuc);
             Connector.ExecuteNonQuery(sql);
         }
 
@@ -37,13 +38,6 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
             string sql = string.Format("update BANGGIA set TenBangGia = {0}, NgayBatDau = {1}, NgayKetThuc = {2} where MaBangGia = {3}",
                bangGiaDTO.TenBangGia, bangGiaDTO.NgayBatDau, bangGiaDTO.NgayKetThuc, bangGiaDTO.MaBangGia);
             Connector.ExecuteNonQuery(sql);
-        }
-
-        // Lấy lên thông tin bảng giá nằm cuối bảng.
-        public object LayMaLoaiPhongCuoiBang()
-        {
-            string sql = string.Format("select MaBangGia from BANGGIA where MaBangGia = (select max(MaBangGia) from BANGGIA)");
-            return Connector.getFistObject(sql);
-        }
+        }        
     }
 }

@@ -86,18 +86,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business Logic Layer\BangGiaBUS.cs" />
     <Compile Include="Business Logic Layer\ChinhSachBUS.cs" />
+    <Compile Include="Business Logic Layer\DonViTinhBUS.cs" />
+    <Compile Include="Business Logic Layer\KhachHangBUS.cs" />
     <Compile Include="Business Logic Layer\LoaiGiaBUS.cs" />
     <Compile Include="Business Logic Layer\LoaiPhongBUS.cs" />
     <Compile Include="Business Logic Layer\NguoiDungBUS.cs" />
     <Compile Include="Business Logic Layer\TangLauBUS.cs" />
+    <Compile Include="Business Logic Layer\TinhTrangPhongBUS.cs" />
     <Compile Include="Connector.cs" />
     <Compile Include="Data Access Layer\BangGiaDAL.cs" />
     <Compile Include="Data Access Layer\ChinhSachDAL.cs" />
+    <Compile Include="Data Access Layer\ChiTietBangGiaDAL.cs" />
+    <Compile Include="Data Access Layer\DonViTinhDAL.cs" />
+    <Compile Include="Data Access Layer\KhachHangDAL.cs" />
     <Compile Include="Data Access Layer\LoaiGiaDAL.cs" />
     <Compile Include="Data Access Layer\LoaiPhongDAL.cs" />
     <Compile Include="Data Access Layer\NguoiDungDAL.cs" />
     <Compile Include="Data Access Layer\TangLauDAL.cs" />
+    <Compile Include="Data Access Layer\TinhTrangPhongDAL.cs" />
     <Compile Include="Data Transfer Object\BangGiaDTO.cs" />
     <Compile Include="Data Transfer Object\ChinhSachDTO.cs" />
     <Compile Include="Data Transfer Object\ChiTietBangGiaDTO.cs" />
@@ -115,7 +123,7 @@
     <Compile Include="Data Transfer Object\LoaiGiaDTO.cs" />
     <Compile Include="Data Transfer Object\LoaiPhongDTO.cs" />
     <Compile Include="Data Transfer Object\NguoiDungDTO.cs" />
-    <Compile Include="Data Transfer Object\NhomDichVu.cs" />
+    <Compile Include="Data Transfer Object\NhomDichVuDTO.cs" />
     <Compile Include="Data Transfer Object\PhongDTO.cs" />
     <Compile Include="Data Transfer Object\QuanLyVatTuDTO.cs" />
     <Compile Include="Data Transfer Object\SuDungDichVuDTO.cs" />
