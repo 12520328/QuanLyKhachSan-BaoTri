@@ -77,10 +77,12 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.NewItemRowText = "Thêm dòng mới tại đây";
             this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowDetailButtons = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
+            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
             this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
             // 
             // colMaTangLau
@@ -91,7 +93,7 @@
             this.colMaTangLau.Name = "colMaTangLau";
             this.colMaTangLau.OptionsColumn.ReadOnly = true;
             this.colMaTangLau.Visible = true;
-            this.colMaTangLau.VisibleIndex = 0;
+            this.colMaTangLau.VisibleIndex = 1;
             this.colMaTangLau.Width = 119;
             // 
             // colTenTangLau
@@ -100,7 +102,7 @@
             this.colTenTangLau.FieldName = "TenTangLau";
             this.colTenTangLau.Name = "colTenTangLau";
             this.colTenTangLau.Visible = true;
-            this.colTenTangLau.VisibleIndex = 1;
+            this.colTenTangLau.VisibleIndex = 2;
             this.colTenTangLau.Width = 585;
             // 
             // layoutControlGroup1

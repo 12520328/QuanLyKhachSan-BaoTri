@@ -47,5 +47,14 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
         {
             _chiTietBangGia = new List<ChiTietBangGiaDTO>();
         }
+
+        public BangGiaDTO(int MaBangGia,string TenBangGia, DateTime NgayBatDau, DateTime NgayKetThuc)
+        {
+            _maBangGia = MaBangGia;
+            _tenBangGia = TenBangGia;
+            _ngayBatDau = NgayBatDau;
+            _ngayKetThuc = NgayKetThuc;
+            _chiTietBangGia = new List<ChiTietBangGiaDTO>();
+        }
     }
 }

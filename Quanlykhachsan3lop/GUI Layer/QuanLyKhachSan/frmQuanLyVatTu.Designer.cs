@@ -91,8 +91,14 @@
             this.colGhiChu});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
+            this.gridView1.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.gridView1_InvalidRowException);
+            this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
+            this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
             // 
             // colMaVatTu
             // 
@@ -101,7 +107,7 @@
             this.colMaVatTu.Name = "colMaVatTu";
             this.colMaVatTu.OptionsColumn.ReadOnly = true;
             this.colMaVatTu.Visible = true;
-            this.colMaVatTu.VisibleIndex = 0;
+            this.colMaVatTu.VisibleIndex = 1;
             // 
             // colTenVatTu
             // 
@@ -109,7 +115,7 @@
             this.colTenVatTu.FieldName = "TenVatTu";
             this.colTenVatTu.Name = "colTenVatTu";
             this.colTenVatTu.Visible = true;
-            this.colTenVatTu.VisibleIndex = 1;
+            this.colTenVatTu.VisibleIndex = 2;
             // 
             // colSoLuong
             // 
@@ -118,7 +124,7 @@
             this.colSoLuong.FieldName = "SoLuong";
             this.colSoLuong.Name = "colSoLuong";
             this.colSoLuong.Visible = true;
-            this.colSoLuong.VisibleIndex = 2;
+            this.colSoLuong.VisibleIndex = 3;
             // 
             // calSoLuong
             // 
@@ -133,7 +139,7 @@
             this.colGhiChu.FieldName = "GhiChu";
             this.colGhiChu.Name = "colGhiChu";
             this.colGhiChu.Visible = true;
-            this.colGhiChu.VisibleIndex = 3;
+            this.colGhiChu.VisibleIndex = 4;
             // 
             // layoutControlGroup1
             // 
@@ -181,6 +187,7 @@
             this.Name = "frmQuanLyVatTu";
             this.Text = "Quản Lý Vật Tư";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmQuanLyVatTu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();

@@ -21,6 +21,7 @@ namespace Quanlykhachsan3lop.Màn_Hình
         DataTable dt = new DataTable();
         TangLauDTO tangLauDTO= new TangLauDTO();
         TangLauBUS tangLauBUS = new TangLauBUS();
+
         public frmQuanLyTangLau()
         {
             InitializeComponent();
@@ -46,35 +47,43 @@ namespace Quanlykhachsan3lop.Màn_Hình
             ucMenu.btnDong.ItemClick += ucMenu_Dong_Clicked;
         }
 
+        // Đóng form.
         private void ucMenu_Dong_Clicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.Close();
         }
 
+        // Xuất danh sách ra file excel.
         private void ucMenu_Xuat_Clicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             PrintAndExport.ExportXls(gridControl1, "DANH SÁCH TẦNG LẦU");
         }
 
+        // In danh sách, cho phép xem trước.
         private void ucMenu_In_Clicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             PrintAndExport.ShowGridPreview(gridControl1, "DANH SÁCH TẦNG LẦU");
         }
 
+        // Load lại database lên gridview.
         private void ucMenu_LamMoi_Clicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
             SplashScreenManager.ShowForm(typeof(WaitForm1));
             Thread.Sleep(1000);
             SplashScreenManager.CloseForm();
             LamMoi();
         }
 
+        // Làm mới gridview bằng cách load lại cơ sở dữ liệu.
         private void LamMoi()
         {
             dt = tangLauBUS.LayDanhSachTangLau();
             gridControl1.DataSource = dt;
+
+            tangLauDTO = convert_DataRow_To_TangLauDTO(gridView1.GetDataRow(gridView1.FocusedRowHandle));
         }
+
+        // chuyển đổi trạng thái chỉ đọc và chỉnh sửa.
         private void ucMenu_ChiDoc_Clicked(object sender, EventArgs e)
         {
             if (gridView1.OptionsBehavior.ReadOnly == true)
@@ -94,53 +103,109 @@ namespace Quanlykhachsan3lop.Màn_Hình
                 gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.None;
             }
         }
-        //Xóa 1 hàng
+
+        //Xóa dữ liệu.
         private void ucMenu_Xoa_Clicked(object sender, EventArgs e)
         {
-            DialogResult dg = MessageBox.Show("Bạn có chắc muốn xóa dòng này không? ", "Xóa dữ liệu", MessageBoxButtons.OKCancel);
+            DialogResult dg = MessageBox.Show("Bạn có chắc muốn xóa dữ liệu này không? ", "Xóa dữ liệu", MessageBoxButtons.OKCancel);
             if (dg == DialogResult.Cancel)
             {
                 return;
             }
-            tangLauBUS.XoaTangLau(tangLauDTO);
+
+            int[] selectedIndexs = gridView1.GetSelectedRows();
+            TangLauDTO tlDto = new TangLauDTO();
+            for (int i = 0; i < selectedIndexs.Length; i++)
+            {
+                tlDto = convert_DataRow_To_TangLauDTO(gridView1.GetDataRow(selectedIndexs[i]));
+                tangLauBUS.XoaTangLau(tlDto);
+            }
+
             LamMoi();
         }        
         
         // Bắt sự kiện RowUpdate để thực hiện thêm chỉnh sửa một hàng.
+        // Sự kiện này xảy ra khi việc chỉnh sửa một hàng vừa được lưu vào datasource của gridview.
+        // Lợi dụng sự kiện này để thêm một dòng vào database khi thực hiện update trên NewItemRow.
         private void gridView1_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
         {
+            DataRow dr;
             if (e.RowHandle == GridControl.NewItemRowHandle)
             {
-                DataRow newDr = gridView1.GetDataRow(gridView1.DataRowCount - 1);
-                tangLauDTO.TenTangLau = (string)newDr["TenTangLau"];
-                tangLauBUS.ThemTangLau(tangLauDTO);                
+                dr = gridView1.GetDataRow(gridView1.DataRowCount - 1);
+                if (!KiemTraDuLieu(dr))
+                {
+                    LamMoi();
+                    return;
+                }
+                tangLauDTO = convert_DataRow_To_TangLauDTO(dr);
+                tangLauBUS.ThemTangLau(tangLauDTO);
             }
             else
             {
-                DialogResult dg = MessageBox.Show("Bạn có chắc muốn sửa dòng này không ? ", "Sửa dữ liệu", MessageBoxButtons.OKCancel);
+                DialogResult dg = MessageBox.Show("Bạn có chắc muốn sửa dòng này không ? ", "Sửa dữ liệu", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (dg == DialogResult.Cancel)
                 {
-                    LamMoi();  
+                    LamMoi();
                     return;
                 }
-                DataRow dr = gridView1.GetDataRow(e.RowHandle);
-                tangLauDTO.MaTangLau = (int)dr["MaTangLau"];
-                tangLauDTO.TenTangLau = (string)dr["TenTangLau"];
+
+                dr = gridView1.GetDataRow(e.RowHandle);
+                if (!KiemTraDuLieu(dr))
+                {
+                    LamMoi();
+                    return;
+                }
+                tangLauDTO = convert_DataRow_To_TangLauDTO(dr);
                 tangLauBUS.SuaTangLau(tangLauDTO);
             }
+
             LamMoi();
         }
-        
-        private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+
+
+        // Chuyển đổi dữ liệu từ datarow sang tanglaudto.
+        private TangLauDTO convert_DataRow_To_TangLauDTO(DataRow dr)
         {
-            if(e.RowHandle > 0)
+            TangLauDTO tlDto = new TangLauDTO();
+            tlDto.TenTangLau = (string)dr["TenTangLau"];
+
+            if (dr["MaTangLau"] != System.DBNull.Value)
             {
-                DataRow dr = gridView1.GetDataRow(e.RowHandle);
-                tangLauDTO.MaTangLau = (int)dr["MaTangLau"];
-                tangLauDTO.TenTangLau = (string)dr["TenTangLau"];
-                ucMenu.btnXoa.Enabled = true;
+                tlDto.MaTangLau = (int)dr["MaTangLau"];
+            }
+            else
+            {
+                tlDto.MaTangLau = -1;
             }
 
+            return tlDto;
+        }
+
+        // Kiểm tra dữ liệu nhập vào trước khi lưu xuống cơ sở dữ liệu.
+        private bool KiemTraDuLieu(DataRow dr)
+        {
+            if (string.IsNullOrEmpty((string)dr["TenTangLau"]))
+            {
+                MessageBox.Show("Chưa điền tên tầng lầu", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            if (gridView1.GetSelectedRows().Length > 0)
+            {
+                ucMenu.btnXoa.Enabled = true;
+            }
+            else
+            {
+                ucMenu.btnXoa.Enabled = false;
+            }
         }
     }
 }

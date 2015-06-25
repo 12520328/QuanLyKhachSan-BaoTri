@@ -39,11 +39,10 @@
             this.lkupDonViTinh = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colDonGia = new DevExpress.XtraGrid.Columns.GridColumn();
             this.calDonGia = new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
-            this.colGhiChu = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ucMenu1 = new Quanlykhachsan3lop.Màn_Hình.ucMenu();
+            this.ucMenu = new Quanlykhachsan3lop.Màn_Hình.ucMenu();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -89,12 +88,19 @@
             this.colTenDichVu,
             this.colNhomDichVu,
             this.colDonViTinh,
-            this.colDonGia,
-            this.colGhiChu});
+            this.colDonGia});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.MouseUp;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
+            this.gridView1.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.gridView1_InvalidRowException);
+            this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
+            this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
             // 
             // colMaDichVu
             // 
@@ -103,7 +109,7 @@
             this.colMaDichVu.Name = "colMaDichVu";
             this.colMaDichVu.OptionsColumn.ReadOnly = true;
             this.colMaDichVu.Visible = true;
-            this.colMaDichVu.VisibleIndex = 0;
+            this.colMaDichVu.VisibleIndex = 1;
             this.colMaDichVu.Width = 65;
             // 
             // colTenDichVu
@@ -112,16 +118,17 @@
             this.colTenDichVu.FieldName = "TenDichVu";
             this.colTenDichVu.Name = "colTenDichVu";
             this.colTenDichVu.Visible = true;
-            this.colTenDichVu.VisibleIndex = 1;
+            this.colTenDichVu.VisibleIndex = 2;
             this.colTenDichVu.Width = 105;
             // 
             // colNhomDichVu
             // 
             this.colNhomDichVu.Caption = "Nhóm Dịch Vụ";
             this.colNhomDichVu.ColumnEdit = this.lkupNhomDichVu;
+            this.colNhomDichVu.FieldName = "NhomDichVu";
             this.colNhomDichVu.Name = "colNhomDichVu";
             this.colNhomDichVu.Visible = true;
-            this.colNhomDichVu.VisibleIndex = 2;
+            this.colNhomDichVu.VisibleIndex = 3;
             this.colNhomDichVu.Width = 105;
             // 
             // lkupNhomDichVu
@@ -136,9 +143,10 @@
             // 
             this.colDonViTinh.Caption = "Đơn Vị Tính";
             this.colDonViTinh.ColumnEdit = this.lkupDonViTinh;
+            this.colDonViTinh.FieldName = "MaDonViTinh";
             this.colDonViTinh.Name = "colDonViTinh";
             this.colDonViTinh.Visible = true;
-            this.colDonViTinh.VisibleIndex = 3;
+            this.colDonViTinh.VisibleIndex = 4;
             this.colDonViTinh.Width = 125;
             // 
             // lkupDonViTinh
@@ -153,9 +161,10 @@
             // 
             this.colDonGia.Caption = "Đơn Giá";
             this.colDonGia.ColumnEdit = this.calDonGia;
+            this.colDonGia.FieldName = "DonGia";
             this.colDonGia.Name = "colDonGia";
             this.colDonGia.Visible = true;
-            this.colDonGia.VisibleIndex = 4;
+            this.colDonGia.VisibleIndex = 5;
             this.colDonGia.Width = 118;
             // 
             // calDonGia
@@ -164,15 +173,6 @@
             this.calDonGia.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.calDonGia.Name = "calDonGia";
-            // 
-            // colGhiChu
-            // 
-            this.colGhiChu.Caption = "Ghi Chú";
-            this.colGhiChu.FieldName = "GhiChu";
-            this.colGhiChu.Name = "colGhiChu";
-            this.colGhiChu.Visible = true;
-            this.colGhiChu.VisibleIndex = 5;
-            this.colGhiChu.Width = 99;
             // 
             // layoutControlGroup1
             // 
@@ -210,13 +210,13 @@
             this.layoutControlItem1.TextToControlDistance = 0;
             this.layoutControlItem1.TextVisible = false;
             // 
-            // ucMenu1
+            // ucMenu
             // 
-            this.ucMenu1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucMenu1.Location = new System.Drawing.Point(0, 0);
-            this.ucMenu1.Name = "ucMenu1";
-            this.ucMenu1.Size = new System.Drawing.Size(663, 26);
-            this.ucMenu1.TabIndex = 2;
+            this.ucMenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucMenu.Location = new System.Drawing.Point(0, 0);
+            this.ucMenu.Name = "ucMenu";
+            this.ucMenu.Size = new System.Drawing.Size(663, 26);
+            this.ucMenu.TabIndex = 2;
             // 
             // frmQuanLyDichVu
             // 
@@ -224,10 +224,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(663, 463);
             this.Controls.Add(this.layoutControl1);
-            this.Controls.Add(this.ucMenu1);
+            this.Controls.Add(this.ucMenu);
             this.Name = "frmQuanLyDichVu";
             this.Text = "Quản Lý Dịch Vụ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmQuanLyDichVu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -249,11 +250,10 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colMaDichVu;
         private DevExpress.XtraGrid.Columns.GridColumn colTenDichVu;
-        private DevExpress.XtraGrid.Columns.GridColumn colGhiChu;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private Màn_Hình.ucMenu ucMenu1;
+        private Màn_Hình.ucMenu ucMenu;
         private DevExpress.XtraGrid.Columns.GridColumn colNhomDichVu;
         private DevExpress.XtraGrid.Columns.GridColumn colDonViTinh;
         private DevExpress.XtraGrid.Columns.GridColumn colDonGia;

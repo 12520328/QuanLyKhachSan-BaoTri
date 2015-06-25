@@ -75,8 +75,14 @@
             this.colTenNhomDichVu});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
+            this.gridView1.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.gridView1_InvalidRowException);
+            this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
+            this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
             // 
             // colMaNhomDichVu
             // 
@@ -85,7 +91,7 @@
             this.colMaNhomDichVu.Name = "colMaNhomDichVu";
             this.colMaNhomDichVu.OptionsColumn.ReadOnly = true;
             this.colMaNhomDichVu.Visible = true;
-            this.colMaNhomDichVu.VisibleIndex = 0;
+            this.colMaNhomDichVu.VisibleIndex = 1;
             this.colMaNhomDichVu.Width = 101;
             // 
             // colTenNhomDichVu
@@ -94,7 +100,7 @@
             this.colTenNhomDichVu.FieldName = "TenNhomDichVu";
             this.colTenNhomDichVu.Name = "colTenNhomDichVu";
             this.colTenNhomDichVu.Visible = true;
-            this.colTenNhomDichVu.VisibleIndex = 1;
+            this.colTenNhomDichVu.VisibleIndex = 2;
             this.colTenNhomDichVu.Width = 312;
             // 
             // layoutControlGroup1
@@ -151,6 +157,7 @@
             this.Name = "frmNhomDichVu";
             this.Text = "Quản Lý Nhóm Dịch Vụ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmNhomDichVu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();

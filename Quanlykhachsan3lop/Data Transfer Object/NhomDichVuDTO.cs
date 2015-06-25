@@ -8,14 +8,14 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
 {
     public class NhomDichVuDTO
     {
-        private int _nhomDichVu;        
+        private int _maNhomDichVu;
         private string _tenNhomDichVu;
 
         #region "Properties"
         public int NhomDichVu
         {
-            get { return _nhomDichVu; }
-            set { _nhomDichVu = value; }
+            get { return _maNhomDichVu; }
+            set { _maNhomDichVu = value; }
         }
         public string TenNhomDichVu
         {

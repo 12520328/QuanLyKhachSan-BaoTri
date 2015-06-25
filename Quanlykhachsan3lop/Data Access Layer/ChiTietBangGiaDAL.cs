@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Quanlykhachsan3lop.Data_Access_Layer
 {
-    public class ChiTietChiTietBangGiaDAL
+    public class ChiTietBangGiaDAL
     {
         // Lấy danh sách chi tiết bảng giá từ cơ sở dữ liệu.
         public DataTable LayDanhSachLoaiPhong()
@@ -20,7 +20,7 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
         // Thêm một chi tiết bảng giá vào cơ sở dữ liệu.
         public void Insert(ChiTietBangGiaDTO chiTietBangGiaDTO)
         {
-            string sql = string.Format("insert into BANGGIA(MaBangGia,MaLoaiGia,DonGia) Values({0},{1},{2})",
+            string sql = string.Format("insert into CHITIETBANGGIA(MaBangGia,MaLoaiGia,DonGia) Values({0},{1},{2})",
                 chiTietBangGiaDTO.MaBangGia, chiTietBangGiaDTO.MaLoaiGia, chiTietBangGiaDTO.DonGia);
             Connector.ExecuteNonQuery(sql);
         }
@@ -28,14 +28,14 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
         // Xóa một chi tiết bảng giá khỏi cơ sở dữ liệu.
         public void Delete(ChiTietBangGiaDTO chiTietBangGiaDTO)
         {
-            string sql = string.Format("delete from BANGGIA where MaChiTietBangGia = {0}", chiTietBangGiaDTO.MaChiTietBangGia);
+            string sql = string.Format("delete from CHITIETBANGGIA where MaChiTietBangGia = {0}", chiTietBangGiaDTO.MaChiTietBangGia);
             Connector.ExecuteNonQuery(sql);
         }
 
         // Sưa thông tin một chi tiết bảng giá.
         public void Update(ChiTietBangGiaDTO chiTietBangGiaDTO)
         {
-            string sql = string.Format("update BANGGIA set MaBangGia = {0}, MaLoaiGia = {1}, DonGia = {2} where MaChiTietBangGia = {3}",
+            string sql = string.Format("update CHITIETBANGGIA set MaBangGia = {0}, MaLoaiGia = {1}, DonGia = {2} where MaChiTietBangGia = {3}",
                chiTietBangGiaDTO.MaBangGia, chiTietBangGiaDTO.MaLoaiGia, chiTietBangGiaDTO.DonGia, chiTietBangGiaDTO.MaChiTietBangGia);
             Connector.ExecuteNonQuery(sql);
         }        

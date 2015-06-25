@@ -12,13 +12,17 @@ namespace Quanlykhachsan3lop.Business_Logic_Layer
 {
     public class LoaiGiaBUS
     {
-         private LoaiGiaDAL loaiGiaDAL;       
+        private LoaiGiaDAL loaiGiaDAL;       
 
         public LoaiGiaBUS()
         {
             loaiGiaDAL = new LoaiGiaDAL();
         }
 
+        public DataTable LayDanhSachTenLoaiGia()
+        {
+            return loaiGiaDAL.LayDanhSachTenLoaiGia();
+        }
         // Lấy danh sách loại giá phụ thu.
         public DataTable LayDanhSachLoaiGia()
         {
@@ -54,7 +58,15 @@ namespace Quanlykhachsan3lop.Business_Logic_Layer
             {
                 return false;
             }
-            loaiGiaDAL.Update(loaiGiaDTO);
+            try
+            {
+                loaiGiaDAL.Update(loaiGiaDTO);
+
+            }
+            catch
+            {
+                XtraMessageBox.Show("Tên bảng giá bạn nhập đã tồn tại. Vui lòng nhập lại.", "Thông Báo");
+            }
             return true;
         }
       

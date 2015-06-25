@@ -34,19 +34,19 @@
             this.colMaTinhTrangDatPhong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTenTinhTrang = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHinhAnh = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.imgTinhTrang = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.ucMenu = new Quanlykhachsan3lop.Màn_Hình.ucMenu();
-            this.imgTinhTrang = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgTinhTrang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgTinhTrang)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -81,8 +81,12 @@
             this.colHinhAnh});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
+            this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
             // 
             // colMaTinhTrangDatPhong
             // 
@@ -107,8 +111,15 @@
             this.colHinhAnh.ColumnEdit = this.imgTinhTrang;
             this.colHinhAnh.Name = "colHinhAnh";
             this.colHinhAnh.Visible = true;
-            this.colHinhAnh.VisibleIndex = 2;
+            this.colHinhAnh.VisibleIndex = 3;
             this.colHinhAnh.Width = 253;
+            // 
+            // imgTinhTrang
+            // 
+            this.imgTinhTrang.AutoHeight = false;
+            this.imgTinhTrang.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.imgTinhTrang.Name = "imgTinhTrang";
             // 
             // layoutControlGroup1
             // 
@@ -154,13 +165,6 @@
             this.ucMenu.Size = new System.Drawing.Size(684, 26);
             this.ucMenu.TabIndex = 2;
             // 
-            // imgTinhTrang
-            // 
-            this.imgTinhTrang.AutoHeight = false;
-            this.imgTinhTrang.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.imgTinhTrang.Name = "imgTinhTrang";
-            // 
             // frmTinhTrangDatPhong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,14 +175,15 @@
             this.Name = "frmTinhTrangDatPhong";
             this.Text = "Tình Trạng Đặt Phòng";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmQuanLyTinhTrangDatPhong_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgTinhTrang)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgTinhTrang)).EndInit();
             this.ResumeLayout(false);
 
         }

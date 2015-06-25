@@ -13,7 +13,6 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
         private decimal _donGia;
         private int _maDonViTinh;
         private int _nhomDichVu;
-        private string _ghiChu;
 
         #region "Properties"
         public int MaDichVu
@@ -40,11 +39,6 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
         {
             get { return _nhomDichVu; }
             set { _nhomDichVu = value; }
-        }
-        public string GhiChu
-        {
-            get { return _ghiChu; }
-            set { _ghiChu = value; }
         }
         #endregion
     }

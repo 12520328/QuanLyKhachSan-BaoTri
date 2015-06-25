@@ -11,6 +11,13 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
 {
     public class LoaiGiaDAL
     {
+
+        public DataTable LayDanhSachTenLoaiGia()
+        {
+            string sql = "select MaLoaiGia, TenLoaiGia from LOAIGIA";
+            return Connector.getDataTable(sql);
+        }
+
         // Lấy danh sách loại giá từ cơ sở dữ liệu.
         public DataTable LayDanhSachLoaiGia()
         {

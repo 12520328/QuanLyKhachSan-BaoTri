@@ -11,8 +11,8 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
     public class TinhTrangDatPhongDTO
     {
         private int _maTinhTrangDatPhong;
-        private string _tenTinhTrang;       
-        private Image _hinhAnh;        
+        private string _tenTinhTrangDatPhong;       
+        private byte[] _hinhAnh;        
 
         #region "Properties"
         public int MaTinhTrangDatPhong
@@ -20,12 +20,12 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
             get { return _maTinhTrangDatPhong; }
             set { _maTinhTrangDatPhong = value; }
         }
-        public string TenTinhTrang
+        public string TenTinhTrangDatPhong
         {
-            get { return _tenTinhTrang; }
-            set { _tenTinhTrang = value; }
+            get { return _tenTinhTrangDatPhong; }
+            set { _tenTinhTrangDatPhong = value; }
         }
-        public Image HinhAnh
+        public byte[] HinhAnh
         {
             get { return _hinhAnh; }
             set { _hinhAnh = value; }
