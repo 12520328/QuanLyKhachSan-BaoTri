@@ -23,12 +23,13 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyKhachSan
         LoaiGiaBUS loaiGiaBUS = new LoaiGiaBUS();
         ErrorProvider er = new ErrorProvider();
         DataTable dtChiTietBangGia = new DataTable();
+        int rowHandleDS = -1;
 
 
         public frmQuanLyBangGia()
         {
             InitializeComponent();
-
+            dtChiTietBangGia.Columns.Add("MaChiTietBangGia", typeof(int));
             dtChiTietBangGia.Columns.Add("MaLoaiGia", typeof(int));
             dtChiTietBangGia.Columns.Add("DonGia", typeof(decimal));
 
@@ -38,6 +39,8 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyKhachSan
         private void frmQuanLyBangGia_Load(object sender, EventArgs e)
         {
             LoadData_lkupLoaiGia(loaiGiaBUS.LayDanhSachTenLoaiGia());
+
+            LayDanhSachBangGia();
         }
 
         //Load dữ liệu lên lkupLoaiGia
@@ -57,12 +60,39 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyKhachSan
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(txtMaBangGia.Text))
+            {
+                DialogResult dg = MessageBox.Show("Bạn có chắc muốn xóa dòng này không ? ", "Sửa dữ liệu", MessageBoxButtons.OKCancel);
+                if (dg == DialogResult.Cancel)
+                {                    
+                    return;
+                }
+                bangGiaBUS.Delete(int.Parse(txtMaBangGia.Text));
+                XtraMessageBox.Show("Xóa thành công.", "Thông Báo");
+                RestoreDefaultValue();
+                LayDanhSachBangGia();
+            }                  
         }
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            if (IsValidate())
+            {
+                if (!string.IsNullOrEmpty(txtMaBangGia.Text))
+                {
+                    if (bangGiaBUS.Update(GetBangGia()))
+                    {
+                        XtraMessageBox.Show("Cập nhật thành công.", "Thông Báo");
+                        RestoreDefaultValue();
+                        LayDanhSachBangGia();
+                    }
+                }
+            }
+            else
+            {
+                XtraMessageBox.Show("Dữ liệu nhập không lệ.", "Thông Báo Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            }
         }
 
         
@@ -75,6 +105,7 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyKhachSan
                 {
                     XtraMessageBox.Show("Thêm mới thành công.", "Thông Báo");
                     RestoreDefaultValue();
+                    LayDanhSachBangGia();
                 }
             }
             else
@@ -86,12 +117,12 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyKhachSan
 
         private void btnXuat_Click(object sender, EventArgs e)
         {
-
+            PrintAndExport.ExportXls(gridDanhSachBangGia, "DANH SÁCH BẢNG GIÁ");
         }
 
         private void btnIn_Click(object sender, EventArgs e)
         {
-
+            PrintAndExport.ShowGridPreview(gridDanhSachBangGia, "DANH SÁCH BẢNG GIÁ");
         }
         #endregion
         private BangGiaDTO GetBangGia()
@@ -106,7 +137,8 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyKhachSan
             for (int i = 0; i < gridViewChiTietBangGia.RowCount; i++)
             {
                 ChiTietBangGiaDTO ctBangGia = new ChiTietBangGiaDTO();
-                ctBangGia.MaChiTietBangGia = -1;//Không lấy được mà chi tiết bảng giá
+                ctBangGia.MaChiTietBangGia = !string.IsNullOrEmpty(gridViewChiTietBangGia.GetRowCellValue(i, colMaChiTietBangGia).ToString()) ? 
+                                            int.Parse(gridViewChiTietBangGia.GetRowCellValue(i, colMaChiTietBangGia).ToString()) : - 1;//Không lấy được mà chi tiết bảng giá
                 ctBangGia.MaBangGia = temp.MaBangGia;
                 ctBangGia.MaLoaiGia = int.Parse(gridViewChiTietBangGia.GetRowCellValue(i, colLoaiGia).ToString());
                 ctBangGia.DonGia = decimal.Parse(gridViewChiTietBangGia.GetRowCellValue(i, colDonGia).ToString());
@@ -153,7 +185,8 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyKhachSan
             txtTenBangGia.Text = string.Empty;
             dtNgayApDung.EditValue = null;
             dtNgayKetThuc.EditValue = null;
-            gridChiTietBangGia.DataSource = new DataTable();
+            dtChiTietBangGia.Clear();
+            gridChiTietBangGia.DataSource = dtChiTietBangGia;
             er.Clear();
         }
 
@@ -181,9 +214,7 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyKhachSan
             }
         }
         #endregion
-
-
-        
+     
       
         private void gridViewChiTietBangGia_RowUpdated(object sender, RowObjectEventArgs e)
         {
@@ -218,6 +249,31 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyKhachSan
             //gridChiTietBangGia.DataSource = dtChiTietBangGia;
         }
 
-      
+        private void btnXemChiTiet_Click(object sender, EventArgs e)
+        {
+            txtMaBangGia.Text = gridViewDanhSachBangGia.GetRowCellValue(rowHandleDS, colMaBangGia).ToString();
+            txtTenBangGia.Text = gridViewDanhSachBangGia.GetRowCellValue(rowHandleDS, colTenBangGia).ToString();
+            dtNgayApDung.EditValue = DateTime.Parse(gridViewDanhSachBangGia.GetRowCellValue(rowHandleDS, colNgayApDung).ToString());
+            dtNgayKetThuc.EditValue = DateTime.Parse(gridViewDanhSachBangGia.GetRowCellValue(rowHandleDS, colNgayKetThuc).ToString());
+
+            DataTable t = new DataTable();
+            t = bangGiaBUS.LayDanhSachChiTietBangGia(int.Parse(txtMaBangGia.Text));
+            gridChiTietBangGia.DataSource = t;
+        }
+
+        private void gridViewDanhSachBangGia_RowCellClick(object sender, RowCellClickEventArgs e)
+        {
+            rowHandleDS = e.RowHandle;
+        }      
+
+        private void LayDanhSachBangGia()
+        {
+            gridDanhSachBangGia.DataSource = bangGiaBUS.LayDanhSachBangGia();
+        }
+
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            RestoreDefaultValue();
+        }
     }
 }

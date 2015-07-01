@@ -12,7 +12,7 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
         private string _tenKhachHang;        
         private string _gioiTinh;        
         private string _cMND;      
-        private DateTime _ngaySinh;
+        private DateTime? _ngaySinh;
         private string _diaChi;
 
           
@@ -39,7 +39,7 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
             get { return _cMND; }
             set { _cMND = value; }
         }
-        public DateTime NgaySinh
+        public DateTime? NgaySinh
         {
             get { return _ngaySinh; }
             set { _ngaySinh = value; }

@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraSplashScreen;
+using Quanlykhachsan3lop.GUI_Layer.QuanLyDatPhong;
 using Quanlykhachsan3lop.Màn_Hình;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,8 @@ namespace Quanlykhachsan3lop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new frmLogIn());
             Application.Run(new frmLogIn());
-           
         }
     }
 }

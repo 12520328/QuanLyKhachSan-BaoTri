@@ -49,7 +49,8 @@ namespace Quanlykhachsan3lop
             MoKetNoi();
 
             SqlDataAdapter da = new SqlDataAdapter(sql, _conn);
-
+            if (da == null)
+                return null;
             DataTable dt = new DataTable();
 
             da.Fill(dt);
@@ -67,7 +68,6 @@ namespace Quanlykhachsan3lop
 
             SqlCommand cmd = new SqlCommand(sql, _conn);
             cmd.ExecuteNonQuery();
-
             DongKetNoi();
 
         }

@@ -11,7 +11,7 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
     public class ChiTietBangGiaDAL
     {
         // Lấy danh sách chi tiết bảng giá từ cơ sở dữ liệu.
-        public DataTable LayDanhSachLoaiPhong()
+        public DataTable LayDanhSachChiTietBangGia()
         {
             string sql = "select * from CHITIETBANGGIA";
             return Connector.getDataTable(sql);
@@ -39,5 +39,12 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
                chiTietBangGiaDTO.MaBangGia, chiTietBangGiaDTO.MaLoaiGia, chiTietBangGiaDTO.DonGia, chiTietBangGiaDTO.MaChiTietBangGia);
             Connector.ExecuteNonQuery(sql);
         }        
+
+        //Lấy danh sách chi tiết bảng giá theo mã bảng giá
+        public DataTable LayDanhSachChiTietBangGia(int maBangGia)
+        {
+            string sql = string.Format("select * from CHITIETBANGGIA where MaBangGia = {0}",maBangGia);
+            return Connector.getDataTable(sql);
+        }
     }
 }

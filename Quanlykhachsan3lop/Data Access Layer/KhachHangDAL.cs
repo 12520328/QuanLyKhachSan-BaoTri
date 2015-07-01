@@ -1,10 +1,12 @@
-﻿using Quanlykhachsan3lop.Data_Transfer_Object;
+﻿using DevExpress.XtraEditors;
+using Quanlykhachsan3lop.Data_Transfer_Object;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Quanlykhachsan3lop.Data_Access_Layer
 {
@@ -18,11 +20,18 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
         }
 
         // Thêm một khách hàng vào cơ sở dữ liệu.
-        public void Insert(KhachHangDTO khachHangDTO)
+        public bool Insert(KhachHangDTO khachHangDTO)
         {
-            string sql = string.Format("insert into KHACHHANG(TenKhachHang,GioiTinh,CMND,NgaySinh,DiaChi,SDT) Values(N'{0}',N'{1}','{2}','{3}',N'{4}','{5}')",
+            string sql =string.Format("select * KHACHHANG where CMND = {0}",khachHangDTO.CMND);
+            if (Connector.getDataTable(sql).Rows.Count > 0)
+            {
+                XtraMessageBox.Show("Số chứng minh nhân dân đã tồn tại.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            sql = string.Format("insert into KHACHHANG(TenKhachHang,GioiTinh,CMND,NgaySinh,DiaChi,SDT) Values(N'{0}',N'{1}','{2}','{3}',N'{4}','{5}')",
                 khachHangDTO.TenKhachHang,khachHangDTO.GioiTinh, khachHangDTO.CMND,khachHangDTO.NgaySinh,khachHangDTO.DiaChi,khachHangDTO.SoDienThoai);
-            Connector.ExecuteNonQuery(sql);
+            Connector.ExecuteNonQuery(sql);            
+            return true;
         }
 
         // Xóa một khách hàng khỏi cơ sở dữ liệu.

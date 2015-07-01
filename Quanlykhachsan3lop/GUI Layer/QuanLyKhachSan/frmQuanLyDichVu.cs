@@ -41,10 +41,10 @@ namespace Quanlykhachsan3lop.GUI_Layer
             lkupNhomDichVu.DisplayMember = "TenNhomDichVu";
 
             // Load danh sách đơn vị tính.
-            //DonViTinhBUS dvtBUS = new DonViTinhBUS();
-            //lkupDonViTinh.DataSource = dvtBUS.LayDanhSach();
-            //lkupDonViTinh.ValueMember = "MaDonViTinh";
-            //lkupDonViTinh.DisplayMember = "TenDonViTinh";
+            DonViTinhBUS dvtBUS = new DonViTinhBUS();
+            lkupDonViTinh.DataSource = dvtBUS.LayDanhSachDonViTinh();
+            lkupDonViTinh.ValueMember = "MaDonViTinh";
+            lkupDonViTinh.DisplayMember = "TenDonViTinh";
 
             // Bắt sự kiện cho các button trong user control.
             ucMenu.btnChiDoc.ItemClick += ucMenu_ChiDoc_Clicked;
@@ -168,7 +168,7 @@ namespace Quanlykhachsan3lop.GUI_Layer
             dvDto.TenDichVu = string.IsNullOrEmpty((string)dr["TenDichVu"]) ? "" : (string)dr["TenDichVu"];
             dvDto.DonGia = (dr["DonGia"] != System.DBNull.Value) ? (decimal)dr["DonGia"] : 0;
             dvDto.MaDonViTinh = (dr["MaDonViTinh"] != System.DBNull.Value) ? (int)dr["MaDonViTinh"] : 1;
-            dvDto.NhomDichVu = (dr["NhomDichVu"] != System.DBNull.Value) ? (int)dr["NhomDichVu"] : -1;
+            dvDto.NhomDichVu = (dr["MaNhomDichVu"] != System.DBNull.Value) ? (int)dr["MaNhomDichVu"] : -1;
 
             return dvDto;
         }
@@ -177,7 +177,7 @@ namespace Quanlykhachsan3lop.GUI_Layer
         {
             DataRow dr = gridView1.GetDataRow(e.RowHandle);
             // || dr["MaDonViTinh"] == System.DBNull.Value 
-            if (dr["TenDichVu"] == System.DBNull.Value || dr["NhomDichVu"] == System.DBNull.Value || dr["DonGia"] == System.DBNull.Value)
+            if (dr["TenDichVu"] == System.DBNull.Value || dr["MaNhomDichVu"] == System.DBNull.Value || dr["DonGia"] == System.DBNull.Value)
             {
                 e.Valid = false;
                 e.ErrorText = "Dữ liệu không được để trống\n";
@@ -200,6 +200,11 @@ namespace Quanlykhachsan3lop.GUI_Layer
             {
                 ucMenu.btnXoa.Enabled = false;
             }
+        }
+
+        private void gridControl1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

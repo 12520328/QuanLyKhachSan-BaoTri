@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ucMenu1 = new Quanlykhachsan3lop.Màn_Hình.ucMenu();
+            this.ucMenu = new Quanlykhachsan3lop.Màn_Hình.ucMenu();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -52,13 +52,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             this.SuspendLayout();
             // 
-            // ucMenu1
+            // ucMenu
             // 
-            this.ucMenu1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucMenu1.Location = new System.Drawing.Point(0, 0);
-            this.ucMenu1.Name = "ucMenu1";
-            this.ucMenu1.Size = new System.Drawing.Size(689, 26);
-            this.ucMenu1.TabIndex = 0;
+            this.ucMenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucMenu.Location = new System.Drawing.Point(0, 0);
+            this.ucMenu.Name = "ucMenu";
+            this.ucMenu.Size = new System.Drawing.Size(689, 26);
+            this.ucMenu.TabIndex = 0;
             // 
             // layoutControl1
             // 
@@ -96,9 +96,15 @@
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowDetailButtons = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
+            this.gridView1.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.gridView1_InvalidRowException);
+            this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
+            this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
             // 
             // colMaLoaiPhong
             // 
@@ -107,7 +113,8 @@
             this.colMaLoaiPhong.Name = "colMaLoaiPhong";
             this.colMaLoaiPhong.OptionsColumn.ReadOnly = true;
             this.colMaLoaiPhong.Visible = true;
-            this.colMaLoaiPhong.VisibleIndex = 0;
+            this.colMaLoaiPhong.VisibleIndex = 1;
+            this.colMaLoaiPhong.Width = 137;
             // 
             // colTenLoaiPhong
             // 
@@ -115,7 +122,8 @@
             this.colTenLoaiPhong.FieldName = "TenLoaiPhong";
             this.colTenLoaiPhong.Name = "colTenLoaiPhong";
             this.colTenLoaiPhong.Visible = true;
-            this.colTenLoaiPhong.VisibleIndex = 1;
+            this.colTenLoaiPhong.VisibleIndex = 2;
+            this.colTenLoaiPhong.Width = 167;
             // 
             // colMaBangGia
             // 
@@ -124,13 +132,17 @@
             this.colMaBangGia.FieldName = "MaBangGia";
             this.colMaBangGia.Name = "colMaBangGia";
             this.colMaBangGia.Visible = true;
-            this.colMaBangGia.VisibleIndex = 2;
+            this.colMaBangGia.VisibleIndex = 3;
+            this.colMaBangGia.Width = 167;
             // 
             // lkupBangGia
             // 
             this.lkupBangGia.AutoHeight = false;
             this.lkupBangGia.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkupBangGia.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaBangGia", "MÃ BẢNG GIÁ"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenBangGia", "TÊN BẢNG GIÁ")});
             this.lkupBangGia.Name = "lkupBangGia";
             this.lkupBangGia.NullText = "[Chọn Bảng Giá]";
             // 
@@ -140,8 +152,7 @@
             this.colSoNguoiToiDa.ColumnEdit = this.calSoNguoiToiDa;
             this.colSoNguoiToiDa.FieldName = "SoNguoiToiDa";
             this.colSoNguoiToiDa.Name = "colSoNguoiToiDa";
-            this.colSoNguoiToiDa.Visible = true;
-            this.colSoNguoiToiDa.VisibleIndex = 3;
+            this.colSoNguoiToiDa.Width = 172;
             // 
             // calSoNguoiToiDa
             // 
@@ -192,10 +203,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(689, 469);
             this.Controls.Add(this.layoutControl1);
-            this.Controls.Add(this.ucMenu1);
+            this.Controls.Add(this.ucMenu);
             this.Name = "frmQuanLyLoaiPhong";
             this.Text = "Quản Lý Loại Phòng";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmQuanLyKhachHang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -211,7 +223,7 @@
 
         #endregion
 
-        private Màn_Hình.ucMenu ucMenu1;
+        private Màn_Hình.ucMenu ucMenu;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;

@@ -23,6 +23,14 @@ namespace Quanlykhachsan3lop.Business_Logic_Layer
         {
             return dvDAL.LayDanhSach();
         }
+        public DataTable LayDanhSachTheoMaDichVu(int maDichVu)
+        {
+            return dvDAL.LayDanhSachTheoMaDichVu(maDichVu);
+        }
+        public DataTable LayDanhSachTheoNhomDichVu(int maNhomDichVu)
+        {
+            return dvDAL.LayDanhSachTheoNhomDichVu(maNhomDichVu);
+        }
 
         //Thêm một dịch vụ vào cơ sở dữ liệu.
         public void insert(DichVuDTO dvDTO)

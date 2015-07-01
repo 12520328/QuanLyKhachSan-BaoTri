@@ -11,6 +11,13 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
         private int _maChiTietThuePhong;
         private int _maThuePhong;
         private int _maKhachHang;
+        private int _maPhong;
+
+        public int MaPhong
+        {
+            get { return _maPhong; }
+            set { _maPhong = value; }
+        }
 
         #region "Properties"
         public int MaChiTietThuePhong

@@ -21,7 +21,7 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
         public void ThemTinhTrangDatPhong(TinhTrangDatPhongDTO ttdpDTO)
         {
             string sql;
-            sql = string.Format("insert into TINHTRANGDATPHONG(TenTinhTrangDatPhong, HinhAnh) Values('{0}', '{1}')", ttdpDTO.TenTinhTrangDatPhong, ttdpDTO.HinhAnh);
+            sql = string.Format("insert into TINHTRANGDATPHONG(TenTinhTrangDatPhong, HinhAnh,MauSac) Values('{0}', '{1}', {2})", ttdpDTO.TenTinhTrangDatPhong, ttdpDTO.HinhAnh,ttdpDTO.MauSac);
             Connector.ExecuteNonQuery(sql);
         }
 
@@ -36,7 +36,7 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
         public void SuaTinhTrangDatPhong(TinhTrangDatPhongDTO ttdpDTO)
         {
             string sql;
-            sql = string.Format("update TINHTRANGDATPHONG set TenTinhTrangDatPhong = '{0}', HinhAnh = '{1}' where MaTinhTrangDatPhong = {2}", ttdpDTO.TenTinhTrangDatPhong, ttdpDTO.HinhAnh, ttdpDTO.MaTinhTrangDatPhong);
+            sql = string.Format("update TINHTRANGDATPHONG set TenTinhTrangDatPhong = '{0}', HinhAnh = '{1}', MauSac = {2} where MaTinhTrangDatPhong = {3}", ttdpDTO.TenTinhTrangDatPhong, ttdpDTO.HinhAnh, ttdpDTO.MauSac, ttdpDTO.MaTinhTrangDatPhong);
             Connector.ExecuteNonQuery(sql);
         }
 
@@ -45,6 +45,13 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
         {
             string sql = string.Format("select MaTinhTrang from TINHTRANGDATPHONG where MaTinhTrang = (select max(MaTinhTrang) from TINHTRANGDATPHONG)");
             return Connector.getFistObject(sql);
+        }
+
+        //Lấy màu sắc tình trạng
+        public int LayMauSacTinhTrang(int maTinhTrang)
+        {
+            string sql = string.Format("select MauSac from TINHTRANGDATPHONG where MaTinhTrang = {0}",maTinhTrang);
+            return int.Parse(Connector.getFistObject(sql).ToString());
         }
     }
 }

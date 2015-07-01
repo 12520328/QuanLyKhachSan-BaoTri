@@ -12,45 +12,33 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
     public class TinhTrangPhongDAL
     {
         // Lấy danh sách tình trạng phòng từ cơ sở dữ liệu.
-        public DataTable LayDanhSachTinhTrangPhong()
+        public DataTable LayDanhSach()
         {
             string sql = "select * from TINHTRANGPHONG";
             return Connector.getDataTable(sql);
         }
 
         // Thêm một tình trạng phòng vào cơ sở dữ liệu.
-        public bool Insert(TinhTrangPhongDTO tinhTrangPhongDTO)
+        public void insert(TinhTrangPhongDTO ttpDTO)
         {
-            string sql = string.Format("insert into TINHTRANGPHONG(TenLoaiTinhTrangPhong,HinhAnh,MauSac) Values('{0}','{1}','{2}')",
-                tinhTrangPhongDTO.TenTinhTrangPhong, tinhTrangPhongDTO.HinhAnh, tinhTrangPhongDTO.MauSac);
+            string sql;
+            sql = string.Format("insert into TINHTRANGPHONG(TenTinhTrangPhong, HinhAnh, MauSac) Values(N'{0}', '{1}', {2})", ttpDTO.TenTinhTrangPhong, ttpDTO.HinhAnh, ttpDTO.MauSac);
             Connector.ExecuteNonQuery(sql);
-            return true;
         }
 
         // Xóa một tình trạng phòng khỏi cơ sở dữ liệu.
-        public bool Delete(TinhTrangPhongDTO tinhTrangPhongDTO)
+        public void delete(TinhTrangPhongDTO ttpDTO)
         {
-            string sql = string.Format("delete from TINHTRANGPHONG where MaTinhTrangPhong = {0}", tinhTrangPhongDTO.MaTinhTrangPhong);
+            string sql = string.Format("delete from TINHTRANGPHONG where MaTinhTrangPhong = {0}", ttpDTO.MaTinhTrangPhong);
             Connector.ExecuteNonQuery(sql);
-            return true;
         }
 
-        // Sưa thông tin một tình trạng phòng.
-        public bool Update(TinhTrangPhongDTO tinhTrangPhongDTO)
+        // Sửa thông tin một tình trạng phòng.
+        public void update(TinhTrangPhongDTO ttpDTO)
         {
-            string sql = string.Format("update TINHTRANGPHONG set TenLoaiTinhTrangPhong = '{0}', HinhAnh = '{1}', MauSac = '{2}' where MaTinhTrangPhong = {2}",
-               tinhTrangPhongDTO.TenTinhTrangPhong, tinhTrangPhongDTO.HinhAnh, tinhTrangPhongDTO.MauSac, tinhTrangPhongDTO.MaTinhTrangPhong);
+            string sql;
+            sql = string.Format("update TINHTRANGPHONG set TenTinhTrangPhong = N'{0}', HinhAnh = '{1}', MauSac = {2} where MaTinhTrangPhong = {3}", ttpDTO.TenTinhTrangPhong, ttpDTO.HinhAnh, ttpDTO.MauSac, ttpDTO.MaTinhTrangPhong);
             Connector.ExecuteNonQuery(sql);
-            return true;
-
         }
-
-        // Lấy lên thông tin tình trạng phòng nằm cuối bảng.
-        public object LayMaTinhTrangPhongCuoiBang()
-        {
-            string sql = string.Format("select MaTinhTrangPhong from TINHTRANGPHONG where MaTinhTrangPhong = (select max(MaTinhTrangPhong) from TINHTRANGPHONG)");
-            return Connector.getFistObject(sql);
-        }
-
     }
 }

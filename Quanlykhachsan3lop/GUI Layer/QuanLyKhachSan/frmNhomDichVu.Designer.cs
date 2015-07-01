@@ -67,6 +67,7 @@
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gridControl1.Click += new System.EventHandler(this.gridControl1_Click);
             // 
             // gridView1
             // 
@@ -75,6 +76,7 @@
             this.colTenNhomDichVu});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
@@ -87,7 +89,7 @@
             // colMaNhomDichVu
             // 
             this.colMaNhomDichVu.Caption = "Mã Nhóm Dịch Vụ";
-            this.colMaNhomDichVu.FieldName = "MaNhomDichVu";
+            this.colMaNhomDichVu.FieldName = "NhomDichVu";
             this.colMaNhomDichVu.Name = "colMaNhomDichVu";
             this.colMaNhomDichVu.OptionsColumn.ReadOnly = true;
             this.colMaNhomDichVu.Visible = true;

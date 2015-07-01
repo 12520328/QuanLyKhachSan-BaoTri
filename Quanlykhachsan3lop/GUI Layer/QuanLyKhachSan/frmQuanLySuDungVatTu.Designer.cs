@@ -32,6 +32,9 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMaQuanLyVatTu = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colLoaiPhong = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.lkupLoaiPhong = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.colVatTu = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.lkupVatTu = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colSoLuong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.calSoLuong = new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
             this.colGhiChu = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -40,19 +43,16 @@
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.ucMenu = new Quanlykhachsan3lop.Màn_Hình.ucMenu();
-            this.colVatTu = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.lkupVatTu = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.lkupLoaiPhong = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupLoaiPhong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupVatTu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.calSoLuong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkupVatTu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkupLoaiPhong)).BeginInit();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -80,8 +80,15 @@
             this.colGhiChu});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
+            this.gridView1.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.gridView1_InvalidRowException);
+            this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
+            this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
             // 
             // colMaQuanLyVatTu
             // 
@@ -90,16 +97,47 @@
             this.colMaQuanLyVatTu.Name = "colMaQuanLyVatTu";
             this.colMaQuanLyVatTu.OptionsColumn.ReadOnly = true;
             this.colMaQuanLyVatTu.Visible = true;
-            this.colMaQuanLyVatTu.VisibleIndex = 0;
+            this.colMaQuanLyVatTu.VisibleIndex = 1;
             // 
             // colLoaiPhong
             // 
             this.colLoaiPhong.Caption = "Loại Phòng";
             this.colLoaiPhong.ColumnEdit = this.lkupLoaiPhong;
-            this.colLoaiPhong.FieldName = "LoaiPhong";
+            this.colLoaiPhong.FieldName = "MaLoaiPhong";
             this.colLoaiPhong.Name = "colLoaiPhong";
             this.colLoaiPhong.Visible = true;
-            this.colLoaiPhong.VisibleIndex = 1;
+            this.colLoaiPhong.VisibleIndex = 2;
+            // 
+            // lkupLoaiPhong
+            // 
+            this.lkupLoaiPhong.AutoHeight = false;
+            this.lkupLoaiPhong.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkupLoaiPhong.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaLoaiPhong", "MÃ LOẠI PHÒNG"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenLoaiPhong", "TÊN LOẠI PHÒNG")});
+            this.lkupLoaiPhong.Name = "lkupLoaiPhong";
+            this.lkupLoaiPhong.NullText = "[Chọn loại phòng]";
+            // 
+            // colVatTu
+            // 
+            this.colVatTu.Caption = "Vật Tư";
+            this.colVatTu.ColumnEdit = this.lkupVatTu;
+            this.colVatTu.FieldName = "MaVatTu";
+            this.colVatTu.Name = "colVatTu";
+            this.colVatTu.Visible = true;
+            this.colVatTu.VisibleIndex = 3;
+            // 
+            // lkupVatTu
+            // 
+            this.lkupVatTu.AutoHeight = false;
+            this.lkupVatTu.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkupVatTu.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaVatTu", "MÃ VẬT TƯ"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenVatTu", "TÊN VẬT TƯ")});
+            this.lkupVatTu.Name = "lkupVatTu";
+            this.lkupVatTu.NullText = "[Chọn vật tư]";
             // 
             // colSoLuong
             // 
@@ -108,7 +146,7 @@
             this.colSoLuong.FieldName = "SoLuong";
             this.colSoLuong.Name = "colSoLuong";
             this.colSoLuong.Visible = true;
-            this.colSoLuong.VisibleIndex = 2;
+            this.colSoLuong.VisibleIndex = 4;
             // 
             // calSoLuong
             // 
@@ -123,7 +161,7 @@
             this.colGhiChu.FieldName = "GhiChu";
             this.colGhiChu.Name = "colGhiChu";
             this.colGhiChu.Visible = true;
-            this.colGhiChu.VisibleIndex = 3;
+            this.colGhiChu.VisibleIndex = 5;
             // 
             // layoutControl1
             // 
@@ -180,30 +218,6 @@
             this.ucMenu.Size = new System.Drawing.Size(712, 26);
             this.ucMenu.TabIndex = 2;
             // 
-            // colVatTu
-            // 
-            this.colVatTu.Caption = "Vật Tư";
-            this.colVatTu.ColumnEdit = this.lkupVatTu;
-            this.colVatTu.Name = "colVatTu";
-            this.colVatTu.Visible = true;
-            this.colVatTu.VisibleIndex = 4;
-            // 
-            // lkupVatTu
-            // 
-            this.lkupVatTu.AutoHeight = false;
-            this.lkupVatTu.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lkupVatTu.Name = "lkupVatTu";
-            this.lkupVatTu.NullText = "[Chọn vật tư]";
-            // 
-            // lkupLoaiPhong
-            // 
-            this.lkupLoaiPhong.AutoHeight = false;
-            this.lkupLoaiPhong.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lkupLoaiPhong.Name = "lkupLoaiPhong";
-            this.lkupLoaiPhong.NullText = "[Chọn loại phòng]";
-            // 
             // frmQuanLySuDungVatTu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -214,16 +228,17 @@
             this.Name = "frmQuanLySuDungVatTu";
             this.Text = "Quản Lý Sử DụngVật Tư";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmQuanLyKhachHang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupLoaiPhong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupVatTu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.calSoLuong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkupVatTu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkupLoaiPhong)).EndInit();
             this.ResumeLayout(false);
 
         }

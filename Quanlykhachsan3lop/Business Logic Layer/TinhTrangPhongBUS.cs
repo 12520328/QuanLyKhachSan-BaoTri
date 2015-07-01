@@ -11,41 +11,35 @@ namespace Quanlykhachsan3lop.Business_Logic_Layer
 {
     public class TinhTrangPhongBUS
     {
-        private TinhTrangPhongDAL tinhTrangPhongDAL;       
+        private TinhTrangPhongDAL ttpDAL;
 
         public TinhTrangPhongBUS()
         {
-            tinhTrangPhongDAL = new TinhTrangPhongDAL();
+            ttpDAL = new TinhTrangPhongDAL();
         }
 
-        // Lấy danh sách tình trạng phòng phụ thu.
-        public DataTable LayDanhSachTinhTrangPhong()
+        // Lấy danh sách tình trạng phòng
+        public DataTable LayDanhSach()
         {
-            return tinhTrangPhongDAL.LayDanhSachTinhTrangPhong();
+            return ttpDAL.LayDanhSach();
         }
 
         //Thêm một tình trạng phòng vào cơ sở dữ liệu.
-        public bool Insert(TinhTrangPhongDTO tinhTrangPhongDTO)
+        public void insert(TinhTrangPhongDTO ttpDTO)
         {
-            return tinhTrangPhongDAL.Insert(tinhTrangPhongDTO);
+            ttpDAL.insert(ttpDTO);
         }
 
         // Xóa một tình trạng phòng khỏi cơ sở dữ liệu.
-        public bool Delete(TinhTrangPhongDTO tinhTrangPhongDTO)
+        public void delete(TinhTrangPhongDTO ttpDTO)
         {
-            return tinhTrangPhongDAL.Delete(tinhTrangPhongDTO);
+            ttpDAL.delete(ttpDTO);
         }
 
         // Sửa thông tin một tình trạng phòng.
-        public bool Update(TinhTrangPhongDTO tinhTrangPhongDTO)
+        public void update(TinhTrangPhongDTO ttpDTO)
         {
-            return tinhTrangPhongDAL.Update(tinhTrangPhongDTO);
-        }
-
-        // Lấy MaTinhTrangPhong cuối cùng trong bảng.
-        public object LayMaTinhTrangPhongCuoiBang()
-        {
-            return tinhTrangPhongDAL.LayMaTinhTrangPhongCuoiBang();
+            ttpDAL.update(ttpDTO);
         }
     }
 }

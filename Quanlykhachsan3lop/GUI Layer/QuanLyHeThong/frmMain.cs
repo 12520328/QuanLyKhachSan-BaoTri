@@ -349,7 +349,7 @@ namespace Quanlykhachsan3lop.Màn_Hình
             else
             {
                 ShowWaitForm();
-                f = new frmDatPhong();
+                f = new frmQuanLyDatTraPhong();
                 f.Name = f.GetType().ToString();
                 e.Item.Tag = f.Name;
                 f.MdiParent = this;
@@ -509,6 +509,13 @@ namespace Quanlykhachsan3lop.Màn_Hình
                 else
                     item.Caption = "Current User: Administrator";
             }
+            Form f = new frmQuanLyDatTraPhong();
+            f.MdiParent = this;
+            if (user.LoaiNguoiDung != "QuanTriHeThong" && user.LoaiNguoiDung != "NhanVienLeTan")
+            {
+                DisableControls(f);
+            }
+            f.Show();
         }
 
         #region "Phân quyền người dùng"
@@ -544,5 +551,68 @@ namespace Quanlykhachsan3lop.Màn_Hình
             }
         }
         #endregion
+
+        private void btnSoDoPhong_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                ShowWaitForm();
+                f = new frmSoDoPhong();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                if (user.LoaiNguoiDung != "QuanTriHeThong" || user.LoaiNguoiDung !=  "NhanVienLeTan")//Phân quyền
+                {
+                    DisableControls(f);
+                }
+                f.Show();
+            }
+        }
+
+        private void btnSuDungDichVu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                ShowWaitForm();
+                f = new frmSuDungDichVu();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                if (user.LoaiNguoiDung != "QuanTriHeThong")//Phân quyền
+                {
+                    DisableControls(f);
+                }
+                f.Show();
+            }
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                ShowWaitForm();
+                f = new frmHoaDon();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                if (user.LoaiNguoiDung != "QuanTriHeThong")//Phân quyền
+                {
+                    DisableControls(f);
+                }
+                f.Show();
+            }
+        }
     }
 }

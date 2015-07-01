@@ -16,12 +16,22 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
             string sql = "select * from DICHVU";
             return Connector.getDataTable(sql);
         }
+        public DataTable LayDanhSachTheoMaDichVu(int maDichVu)
+        {
+            string sql = string.Format("select * from  DICHVU where MaDichVu = {0}", maDichVu);
+            return Connector.getDataTable(sql);
+        }
+        public DataTable LayDanhSachTheoNhomDichVu(int maNhomDichVu)
+        {
+            string sql = string.Format("select * from  DICHVU where MaNhomDichVu = {0}", maNhomDichVu);
+            return Connector.getDataTable(sql);
+        }
 
         // Thêm một dịch vụ vào cơ sở dữ liệu.
         public void insert(DichVuDTO dvDTO)
         {
             string sql;
-            sql = string.Format("insert into DICHVU(TenDichVu, DonGia, MaDonViTinh, NhomDichVu) Values(N'{0}', {1}, {2}, {3})", dvDTO.TenDichVu, dvDTO.DonGia, dvDTO.MaDonViTinh, dvDTO.NhomDichVu);
+            sql = string.Format("insert into DICHVU(TenDichVu, DonGia, MaDonViTinh, MaNhomDichVu) Values(N'{0}', {1}, {2}, {3})", dvDTO.TenDichVu, dvDTO.DonGia, dvDTO.MaDonViTinh, dvDTO.NhomDichVu);
             Connector.ExecuteNonQuery(sql);
         }
 
@@ -36,7 +46,7 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
         public void update(DichVuDTO dvDTO)
         {
             string sql;
-            sql = string.Format("update DICHVU set TenDichVu = N'{0}', DonGia = {1}, MaDonViTinh = {2}, NhomDichVu = {3} where MaDichVu = {4}", dvDTO.TenDichVu, dvDTO.DonGia, dvDTO.MaDonViTinh, dvDTO.NhomDichVu, dvDTO.MaDichVu);
+            sql = string.Format("update DICHVU set TenDichVu = N'{0}', DonGia = {1}, MaDonViTinh = {2}, MaNhomDichVu = {3} where MaDichVu = {4}", dvDTO.TenDichVu, dvDTO.DonGia, dvDTO.MaDonViTinh, dvDTO.NhomDichVu, dvDTO.MaDichVu);
             Connector.ExecuteNonQuery(sql);
         }
     }

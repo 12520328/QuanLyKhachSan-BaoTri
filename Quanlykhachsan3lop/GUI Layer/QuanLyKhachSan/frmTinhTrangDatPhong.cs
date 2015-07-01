@@ -29,7 +29,8 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyKhachSan
             // Định nghĩa Datatable tương thích với GridView.
             dt.Columns.Add("MaTinhTrangDatPhong", typeof(int));
             dt.Columns.Add("TenTinhTrangDatPhong", typeof(string));
-            dt.Columns.Add("HinhAnh", typeof(byte[]));
+            dt.Columns.Add("MauSac", typeof(Color));
+           
 
             ucMenu.btnXoa.Enabled = false;
         }
@@ -79,9 +80,8 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyKhachSan
         private void LamMoi()
         {
             dt = ttdpBUS.LayDanhSachTinhTrangDatPhong();
-            gridControl1.DataSource = dt;
 
-            ttdpDTO = convert_DataRow_To_TinhTrangDatPhongDTO(gridView1.GetDataRow(gridView1.FocusedRowHandle));
+            gridControl1.DataSource = dt;
         }
 
         // chuyển đổi trạng thái chỉ đọc và chỉnh sửa.
@@ -187,7 +187,7 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyKhachSan
             {
                 ttdpDto.MaTinhTrangDatPhong = -1;
             }
-
+            ttdpDto.MauSac = (int)dr["MauSac"];
             return ttdpDto;
         }
 
@@ -201,7 +201,16 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyKhachSan
             }
             else
             {
-                return true;
+                if (dr["MauSac"] == System.DBNull.Value)
+                {
+                    MessageBox.Show("Chưa màu sắc cho tình trạng đặt phòng", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+
             }
         }
 

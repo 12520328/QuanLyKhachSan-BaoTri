@@ -32,32 +32,40 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colMaPhong = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSoPhong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTang = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lkupTangLau = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.colMaTinhTrangPhong = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSoGiuong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lkupTinhTrangPhong = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colMaLoaiPhong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lkupLoaiPhong = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.colMaPhong = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSoNguoi = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.lkTinhTrangDatPhong = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.btnXemChiTiet = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.ucMenu = new Quanlykhachsan3lop.Màn_Hình.ucMenu();
             this.colGiaPhong = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colThongTinTienNghi = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnXemChiTiet = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.calSoGiuong = new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
+            this.calSoNguoi = new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
+            this.calThongTinPhong = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkupTangLau)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkupTinhTrangPhong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkupLoaiPhong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkTinhTrangDatPhong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnXemChiTiet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnXemChiTiet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.calSoGiuong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.calSoNguoi)).BeginInit();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -70,7 +78,10 @@
             this.lkupTangLau,
             this.lkupTinhTrangPhong,
             this.lkupLoaiPhong,
-            this.btnXemChiTiet});
+            this.btnXemChiTiet,
+            this.lkTinhTrangDatPhong,
+            this.calSoGiuong,
+            this.calSoNguoi});
             this.gridControl1.Size = new System.Drawing.Size(730, 289);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -79,59 +90,73 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colMaPhong,
+            this.colSoPhong,
             this.colTang,
-            this.colMaTinhTrangPhong,
+            this.colSoGiuong,
             this.colMaLoaiPhong,
-            this.colGiaPhong,
-            this.colThongTinTienNghi});
+            this.colMaPhong,
+            this.colSoNguoi,
+            this.calThongTinPhong});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
+            this.gridView1.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.gridView1_InvalidRowException);
+            this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
+            this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
             // 
-            // colMaPhong
+            // colSoPhong
             // 
-            this.colMaPhong.Caption = "Số Phòng";
-            this.colMaPhong.FieldName = "MaPhong";
-            this.colMaPhong.Name = "colMaPhong";
-            this.colMaPhong.OptionsColumn.ReadOnly = true;
-            this.colMaPhong.Visible = true;
-            this.colMaPhong.VisibleIndex = 0;
-            this.colMaPhong.Width = 110;
+            this.colSoPhong.Caption = "Số Phòng";
+            this.colSoPhong.FieldName = "SoPhong";
+            this.colSoPhong.Name = "colSoPhong";
+            this.colSoPhong.Visible = true;
+            this.colSoPhong.VisibleIndex = 2;
+            this.colSoPhong.Width = 79;
             // 
             // colTang
             // 
             this.colTang.Caption = "Tầng Lầu";
             this.colTang.ColumnEdit = this.lkupTangLau;
+            this.colTang.FieldName = "MaTang";
             this.colTang.Name = "colTang";
             this.colTang.Visible = true;
-            this.colTang.VisibleIndex = 1;
-            this.colTang.Width = 108;
+            this.colTang.VisibleIndex = 4;
+            this.colTang.Width = 100;
             // 
             // lkupTangLau
             // 
             this.lkupTangLau.AutoHeight = false;
             this.lkupTangLau.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkupTangLau.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaTangLau", "MÃ TẦNG LẦU"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenTangLau", "TÊN TẦNG LẦU")});
             this.lkupTangLau.Name = "lkupTangLau";
             this.lkupTangLau.NullText = "[Chọn Tầng Lầu]";
             // 
-            // colMaTinhTrangPhong
+            // colSoGiuong
             // 
-            this.colMaTinhTrangPhong.Caption = "Tình Trạng Phòng";
-            this.colMaTinhTrangPhong.ColumnEdit = this.lkupTinhTrangPhong;
-            this.colMaTinhTrangPhong.Name = "colMaTinhTrangPhong";
-            this.colMaTinhTrangPhong.Visible = true;
-            this.colMaTinhTrangPhong.VisibleIndex = 2;
-            this.colMaTinhTrangPhong.Width = 137;
+            this.colSoGiuong.Caption = "Số Giường";
+            this.colSoGiuong.ColumnEdit = this.calSoGiuong;
+            this.colSoGiuong.FieldName = "SoGiuong";
+            this.colSoGiuong.Name = "colSoGiuong";
+            this.colSoGiuong.Visible = true;
+            this.colSoGiuong.VisibleIndex = 5;
+            this.colSoGiuong.Width = 124;
             // 
             // lkupTinhTrangPhong
             // 
             this.lkupTinhTrangPhong.AutoHeight = false;
             this.lkupTinhTrangPhong.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkupTinhTrangPhong.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaTinhTrangPhong", "MÃ TÌNH TRẠNG PHÒNG"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenTinhTrangPhong", "TÊN TÌNH TRẠNG PHÒNG")});
             this.lkupTinhTrangPhong.Name = "lkupTinhTrangPhong";
             this.lkupTinhTrangPhong.NullText = "[Chọn tình trạng phòng]";
             // 
@@ -139,18 +164,61 @@
             // 
             this.colMaLoaiPhong.Caption = "Loại Phòng";
             this.colMaLoaiPhong.ColumnEdit = this.lkupLoaiPhong;
+            this.colMaLoaiPhong.FieldName = "MaLoaiPhong";
             this.colMaLoaiPhong.Name = "colMaLoaiPhong";
             this.colMaLoaiPhong.Visible = true;
             this.colMaLoaiPhong.VisibleIndex = 3;
-            this.colMaLoaiPhong.Width = 145;
+            this.colMaLoaiPhong.Width = 143;
             // 
             // lkupLoaiPhong
             // 
             this.lkupLoaiPhong.AutoHeight = false;
             this.lkupLoaiPhong.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkupLoaiPhong.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaLoaiPhong", "MÃ LOẠI PHÒNG"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenLoaiPhong", "TÊN LOẠI PHÒNG")});
             this.lkupLoaiPhong.Name = "lkupLoaiPhong";
             this.lkupLoaiPhong.NullText = "[Chọn loại phòng]";
+            // 
+            // colMaPhong
+            // 
+            this.colMaPhong.Caption = "Mã Phòng";
+            this.colMaPhong.FieldName = "MaPhong";
+            this.colMaPhong.Name = "colMaPhong";
+            this.colMaPhong.OptionsColumn.ReadOnly = true;
+            this.colMaPhong.Visible = true;
+            this.colMaPhong.VisibleIndex = 1;
+            this.colMaPhong.Width = 73;
+            // 
+            // colSoNguoi
+            // 
+            this.colSoNguoi.Caption = "Số Người";
+            this.colSoNguoi.ColumnEdit = this.calSoNguoi;
+            this.colSoNguoi.FieldName = "SoNguoi";
+            this.colSoNguoi.Name = "colSoNguoi";
+            this.colSoNguoi.Visible = true;
+            this.colSoNguoi.VisibleIndex = 6;
+            this.colSoNguoi.Width = 118;
+            // 
+            // lkTinhTrangDatPhong
+            // 
+            this.lkTinhTrangDatPhong.AutoHeight = false;
+            this.lkTinhTrangDatPhong.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkTinhTrangDatPhong.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaTinhTrangDatPhong", "MÃ TÌNH TRẠNG ĐẶT PHÒNG"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenTinhTrangDatPhong", "TÊN TÌNH TRẠNG ĐẶT PHÒNG")});
+            this.lkTinhTrangDatPhong.Name = "lkTinhTrangDatPhong";
+            this.lkTinhTrangDatPhong.NullText = "[Tình trạng đặt phòng]";
+            // 
+            // btnXemChiTiet
+            // 
+            this.btnXemChiTiet.AutoHeight = false;
+            this.btnXemChiTiet.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Chi Tiết", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("btnXemChiTiet.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            this.btnXemChiTiet.Name = "btnXemChiTiet";
+            this.btnXemChiTiet.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // layoutControl1
             // 
@@ -216,22 +284,27 @@
             this.colGiaPhong.VisibleIndex = 4;
             this.colGiaPhong.Width = 90;
             // 
-            // colThongTinTienNghi
+            // calSoGiuong
             // 
-            this.colThongTinTienNghi.Caption = "Thông Tin Tiện Nghi";
-            this.colThongTinTienNghi.ColumnEdit = this.btnXemChiTiet;
-            this.colThongTinTienNghi.Name = "colThongTinTienNghi";
-            this.colThongTinTienNghi.Visible = true;
-            this.colThongTinTienNghi.VisibleIndex = 5;
-            this.colThongTinTienNghi.Width = 122;
+            this.calSoGiuong.AutoHeight = false;
+            this.calSoGiuong.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.calSoGiuong.Name = "calSoGiuong";
             // 
-            // btnXemChiTiet
+            // calSoNguoi
             // 
-            this.btnXemChiTiet.AutoHeight = false;
-            this.btnXemChiTiet.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Chi Tiết", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("btnXemChiTiet.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
-            this.btnXemChiTiet.Name = "btnXemChiTiet";
-            this.btnXemChiTiet.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.calSoNguoi.AutoHeight = false;
+            this.calSoNguoi.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.calSoNguoi.Name = "calSoNguoi";
+            // 
+            // calThongTinPhong
+            // 
+            this.calThongTinPhong.Caption = "Thông Tin Phòng";
+            this.calThongTinPhong.FieldName = "ThongTinPhong";
+            this.calThongTinPhong.Name = "calThongTinPhong";
+            this.calThongTinPhong.Visible = true;
+            this.calThongTinPhong.VisibleIndex = 7;
             // 
             // frmQuanLyPhong
             // 
@@ -242,17 +315,21 @@
             this.Controls.Add(this.ucMenu);
             this.Name = "frmQuanLyPhong";
             this.Text = "Quản Lý Phòng";
+            this.Load += new System.EventHandler(this.frmPhong_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkupTangLau)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkupTinhTrangPhong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkupLoaiPhong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkTinhTrangDatPhong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnXemChiTiet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnXemChiTiet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.calSoGiuong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.calSoNguoi)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -261,10 +338,10 @@
 
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn colMaPhong;
+        private DevExpress.XtraGrid.Columns.GridColumn colSoPhong;
         private DevExpress.XtraGrid.Columns.GridColumn colTang;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit lkupTangLau;
-        private DevExpress.XtraGrid.Columns.GridColumn colMaTinhTrangPhong;
+        private DevExpress.XtraGrid.Columns.GridColumn colSoGiuong;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit lkupTinhTrangPhong;
         private DevExpress.XtraGrid.Columns.GridColumn colMaLoaiPhong;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit lkupLoaiPhong;
@@ -273,9 +350,14 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private ucMenu ucMenu;
-        private DevExpress.XtraGrid.Columns.GridColumn colGiaPhong;
-        private DevExpress.XtraGrid.Columns.GridColumn colThongTinTienNghi;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnXemChiTiet;
+        private DevExpress.XtraGrid.Columns.GridColumn colGiaPhong;
+        private DevExpress.XtraGrid.Columns.GridColumn colMaPhong;
+        private DevExpress.XtraGrid.Columns.GridColumn colSoNguoi;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit lkTinhTrangDatPhong;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit calSoGiuong;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit calSoNguoi;
+        private DevExpress.XtraGrid.Columns.GridColumn calThongTinPhong;
 
 
 

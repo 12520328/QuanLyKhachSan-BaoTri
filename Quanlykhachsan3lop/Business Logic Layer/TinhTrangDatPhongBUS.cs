@@ -47,5 +47,11 @@ namespace Quanlykhachsan3lop.Business_Logic_Layer
         {
             return ttdpDAL.LayMaTinhTrangCuoiBang();
         }
+
+        //Lấy mãu sắc
+        public int LayMauSacTinhTrang(int maTinhTrang)
+        {
+            return ttdpDAL.LayMauSacTinhTrang(maTinhTrang);
+        }
     }
 }

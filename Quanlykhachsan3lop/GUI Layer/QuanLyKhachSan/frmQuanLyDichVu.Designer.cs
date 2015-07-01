@@ -80,6 +80,7 @@
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gridControl1.Click += new System.EventHandler(this.gridControl1_Click);
             // 
             // gridView1
             // 
@@ -125,7 +126,7 @@
             // 
             this.colNhomDichVu.Caption = "Nhóm Dịch Vụ";
             this.colNhomDichVu.ColumnEdit = this.lkupNhomDichVu;
-            this.colNhomDichVu.FieldName = "NhomDichVu";
+            this.colNhomDichVu.FieldName = "MaNhomDichVu";
             this.colNhomDichVu.Name = "colNhomDichVu";
             this.colNhomDichVu.Visible = true;
             this.colNhomDichVu.VisibleIndex = 3;
@@ -154,6 +155,8 @@
             this.lkupDonViTinh.AutoHeight = false;
             this.lkupDonViTinh.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkupDonViTinh.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenDonViTinh", "Tên Đơn Vị")});
             this.lkupDonViTinh.Name = "lkupDonViTinh";
             this.lkupDonViTinh.NullText = "[Chọn Đơn Vị Tính]";
             // 

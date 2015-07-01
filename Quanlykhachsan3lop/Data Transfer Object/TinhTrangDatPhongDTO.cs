@@ -12,8 +12,12 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
     {
         private int _maTinhTrangDatPhong;
         private string _tenTinhTrangDatPhong;       
-        private byte[] _hinhAnh;        
+        private byte[] _hinhAnh;
+        private int _mauSac;
 
+      
+       
+      
         #region "Properties"
         public int MaTinhTrangDatPhong
         {
@@ -30,6 +34,12 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
             get { return _hinhAnh; }
             set { _hinhAnh = value; }
         }
+        public int MauSac
+        {
+            get { return _mauSac; }
+            set { _mauSac = value; }
+        }
+
         #endregion
 
     }

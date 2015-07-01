@@ -41,7 +41,7 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
         // Sưa thông tin một bảng giá.
         public void Update(BangGiaDTO bangGiaDTO)
         {            
-            string sql = string.Format("update BANGGIA set TenBangGia = N'{0}', NgayBatDau = {1}, NgayKetThuc = {2} where MaBangGia = {3}",
+            string sql = string.Format("update BANGGIA set TenBangGia = N'{0}', NgayBatDau = '{1}', NgayKetThuc = '{2}' where MaBangGia = {3}",
                bangGiaDTO.TenBangGia, bangGiaDTO.NgayBatDau, bangGiaDTO.NgayKetThuc, bangGiaDTO.MaBangGia);
             Connector.ExecuteNonQuery(sql);
         }

@@ -35,6 +35,8 @@
             this.colTenTinhTrang = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHinhAnh = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imgTinhTrang = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
+            this.colMauSac = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colorMauSac = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -44,6 +46,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgTinhTrang)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorMauSac)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -67,7 +70,8 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.imgTinhTrang});
+            this.imgTinhTrang,
+            this.colorMauSac});
             this.gridControl1.Size = new System.Drawing.Size(656, 359);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -78,9 +82,11 @@
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colMaTinhTrangDatPhong,
             this.colTenTinhTrang,
-            this.colHinhAnh});
+            this.colHinhAnh,
+            this.colMauSac});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
@@ -95,23 +101,23 @@
             this.colMaTinhTrangDatPhong.Name = "colMaTinhTrangDatPhong";
             this.colMaTinhTrangDatPhong.OptionsColumn.ReadOnly = true;
             this.colMaTinhTrangDatPhong.Visible = true;
-            this.colMaTinhTrangDatPhong.VisibleIndex = 0;
+            this.colMaTinhTrangDatPhong.VisibleIndex = 1;
+            this.colMaTinhTrangDatPhong.Width = 126;
             // 
             // colTenTinhTrang
             // 
-            this.colTenTinhTrang.Caption = "Tên Tình Trạng";
-            this.colTenTinhTrang.FieldName = "TenTinhTrang";
+            this.colTenTinhTrang.Caption = "Tên Tình Trạng Đặt Phòng";
+            this.colTenTinhTrang.FieldName = "TenTinhTrangDatPhong";
             this.colTenTinhTrang.Name = "colTenTinhTrang";
             this.colTenTinhTrang.Visible = true;
-            this.colTenTinhTrang.VisibleIndex = 1;
+            this.colTenTinhTrang.VisibleIndex = 2;
+            this.colTenTinhTrang.Width = 252;
             // 
             // colHinhAnh
             // 
             this.colHinhAnh.Caption = "Hình Ảnh";
             this.colHinhAnh.ColumnEdit = this.imgTinhTrang;
             this.colHinhAnh.Name = "colHinhAnh";
-            this.colHinhAnh.Visible = true;
-            this.colHinhAnh.VisibleIndex = 3;
             this.colHinhAnh.Width = 253;
             // 
             // imgTinhTrang
@@ -120,6 +126,26 @@
             this.imgTinhTrang.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.imgTinhTrang.Name = "imgTinhTrang";
+            // 
+            // colMauSac
+            // 
+            this.colMauSac.Caption = "Màu Sắc";
+            this.colMauSac.ColumnEdit = this.colorMauSac;
+            this.colMauSac.FieldName = "MauSac";
+            this.colMauSac.Name = "colMauSac";
+            this.colMauSac.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+            this.colMauSac.Visible = true;
+            this.colMauSac.VisibleIndex = 3;
+            this.colMauSac.Width = 185;
+            // 
+            // colorMauSac
+            // 
+            this.colorMauSac.AutoHeight = false;
+            this.colorMauSac.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.colorMauSac.ColorAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colorMauSac.Name = "colorMauSac";
+            this.colorMauSac.StoreColorAsInteger = true;
             // 
             // layoutControlGroup1
             // 
@@ -181,6 +207,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgTinhTrang)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorMauSac)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -201,5 +228,7 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private Màn_Hình.ucMenu ucMenu;
+        private DevExpress.XtraGrid.Columns.GridColumn colMauSac;
+        private DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit colorMauSac;
     }
 }

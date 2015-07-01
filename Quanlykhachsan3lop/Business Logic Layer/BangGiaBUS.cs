@@ -25,6 +25,12 @@ namespace Quanlykhachsan3lop.Business_Logic_Layer
         {
             return bangGiaDAL.LayDanhSachTenBangGia();
         }
+
+        //Lấy chi tiết bảng giá theo bảng giá
+        public DataTable LayDanhSachChiTietBangGia(int maBangGia)
+        {
+            return chiTietBangGiaDAL.LayDanhSachChiTietBangGia(maBangGia);
+        }
         // Lấy danh sách bảng giá 
         public DataTable LayDanhSachBangGia()
         {
@@ -58,6 +64,15 @@ namespace Quanlykhachsan3lop.Business_Logic_Layer
         // Xóa một bảng giá khỏi cơ sở dữ liệu.
         public void Delete(int maBangGia)
         {
+            for (int i = 0; i < LayDanhSachChiTietBangGia(maBangGia).Rows.Count;i++)
+            {
+                ChiTietBangGiaDTO ct = new ChiTietBangGiaDTO();
+                ct.MaChiTietBangGia = int.Parse(LayDanhSachChiTietBangGia(maBangGia).Rows[i]["MaChiTietBangGia"].ToString());
+                ct.MaBangGia = int.Parse(LayDanhSachChiTietBangGia(maBangGia).Rows[i]["MaBangGia"].ToString());
+                ct.MaLoaiGia = int.Parse(LayDanhSachChiTietBangGia(maBangGia).Rows[i]["MaLoaiGia"].ToString());
+                ct.DonGia = decimal.Parse(LayDanhSachChiTietBangGia(maBangGia).Rows[i]["DonGia"].ToString());
+                chiTietBangGiaDAL.Delete(ct);
+            }
             bangGiaDAL.Delete(maBangGia);
         }
 
@@ -68,14 +83,12 @@ namespace Quanlykhachsan3lop.Business_Logic_Layer
             {
                 return false;
             }
-            try
+            bangGiaDAL.Update(bangGiaDTO);
+            //Cập nhật chi tiết bảng giá
+            foreach (ChiTietBangGiaDTO ct in bangGiaDTO.ChiTietBangGia)
             {
-                bangGiaDAL.Update(bangGiaDTO);
-
-            }
-            catch
-            {
-                XtraMessageBox.Show("Tên bảng giá bạn nhập đã tồn tại. Vui lòng nhập lại.", "Thông Báo");
+                ct.MaBangGia = bangGiaDTO.MaBangGia;
+                chiTietBangGiaDAL.Update(ct);
             }
             return true;
         }

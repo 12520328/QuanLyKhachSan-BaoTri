@@ -18,7 +18,7 @@ namespace Quanlykhachsan3lop.Business_Logic_Layer
             khachHangDAL = new KhachHangDAL();
         }
 
-        // Lấy danh sách khách hàng phụ thu.
+        // Lấy danh sách khách hàng
         public DataTable LayDanhSachKhachHang()
         {
             return khachHangDAL.LayDanhSachKhachHang();
@@ -29,8 +29,7 @@ namespace Quanlykhachsan3lop.Business_Logic_Layer
         {
             if (khachHangDTO == null)
                 return false;
-            khachHangDAL.Insert(khachHangDTO);
-            return true;
+            return khachHangDAL.Insert(khachHangDTO);
         }
 
         // Xóa một khách hàng khỏi cơ sở dữ liệu.

@@ -18,35 +18,26 @@ namespace Quanlykhachsan3lop.Data_Access_Layer
         }
 
         // Thêm một loại phòng vào cơ sở dữ liệu.
-        public bool Insert(LoaiPhongDTO loaiPhongDTO)
+        public void Insert(LoaiPhongDTO loaiPhongDTO)
         {
-            string sql = string.Format("insert into LOAIPHONG(TenLoaiPhong,MaBangGia,SoNguoiToiDa) Values('{0}','{1}','{2}')", loaiPhongDTO.TenLoaiPhong,loaiPhongDTO.MaBangGia,loaiPhongDTO.SoLuongNguoiToiDa);
+            string sql = string.Format("insert into LOAIPHONG(TenLoaiPhong,MaBangGia,SoNguoiToiDa) Values(N'{0}',{1},{2})", loaiPhongDTO.TenLoaiPhong,loaiPhongDTO.MaBangGia,loaiPhongDTO.SoLuongNguoiToiDa);
             Connector.ExecuteNonQuery(sql);
-            return true;
         }
 
         // Xóa một loại phòng khỏi cơ sở dữ liệu.
-        public bool Delete(LoaiPhongDTO loaiPhongDTO)
+        public void Delete(int maLoaiPhong)
         {
-            string sql = string.Format("delete from LOAIPHONG where MaLoaiPhong = {0}", loaiPhongDTO.MaLoaiPhong);
+            string sql = string.Format("delete from LOAIPHONG where MaLoaiPhong = {0}", maLoaiPhong);
             Connector.ExecuteNonQuery(sql);
-            return true;
         }
 
         // Sưa thông tin một loại phòng.
-        public bool Update(LoaiPhongDTO loaiPhongDTO)
+        public void Update(LoaiPhongDTO loaiPhongDTO)
         {
-            string sql = string.Format("update LOAIPHONG set TenLoaiPhong = {0}, MaBangGia = {1}, SoNguoiToiDa = {2} where MaTangLau = {3}",
+            string sql = string.Format("update LOAIPHONG set TenLoaiPhong = N'{0}', MaBangGia = {1}, SoNguoiToiDa = {2} where MaLoaiPhong = {3}",
                loaiPhongDTO.TenLoaiPhong,loaiPhongDTO.MaBangGia,loaiPhongDTO.SoLuongNguoiToiDa,loaiPhongDTO.MaLoaiPhong);
             Connector.ExecuteNonQuery(sql);
-            return true;
         }
 
-        // Lấy lên thông tin loại phòng nằm cuối bảng.
-        public object LayMaLoaiPhongCuoiBang()
-        {
-            string sql = string.Format("select MaLoaiPhong from LOAIPHONG where MaLoaiPhong = (select max(MaLoaiPhong) from LOAIPHONG)");
-            return Connector.getFistObject(sql);
-        }
     }
 }

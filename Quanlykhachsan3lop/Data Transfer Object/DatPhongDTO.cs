@@ -15,8 +15,19 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
         private DateTime _ngayDi;
         private decimal _datCoc;
         private decimal _khuyenMai;
+        private int _VND;
+
+        public int VND
+        {
+            get { return _VND; }
+            set { _VND = value; }
+        }
+
         private int _tongSoKhach;
         private int _tongSoPhong;
+        private string _trangThai;
+
+      
         private List<ChiTietDatPhongDTO> _chiTietDatPhong;
               
 
@@ -66,6 +77,11 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
         {
             get { return _tongSoPhong; }
             set { _tongSoPhong = value; }
+        }
+        public string TrangThai
+        {
+            get { return _trangThai; }
+            set { _trangThai = value; }
         }
         public List<ChiTietDatPhongDTO> ChiTietDatPhong
         {

@@ -33,6 +33,7 @@
             this.colMaTinhTrangPhong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTenTinhTrang = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHinhAnh = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.picEdit = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.colMauSac = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colorTinhTrang = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
@@ -40,16 +41,15 @@
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.ucMenu = new Quanlykhachsan3lop.Màn_Hình.ucMenu();
-            this.picEdit = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorTinhTrang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picEdit)).BeginInit();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -75,8 +75,15 @@
             this.colMauSac});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
+            this.gridView1.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.gridView1_InvalidRowException);
+            this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
+            this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
             // 
             // colMaTinhTrangPhong
             // 
@@ -85,34 +92,38 @@
             this.colMaTinhTrangPhong.Name = "colMaTinhTrangPhong";
             this.colMaTinhTrangPhong.OptionsColumn.ReadOnly = true;
             this.colMaTinhTrangPhong.Visible = true;
-            this.colMaTinhTrangPhong.VisibleIndex = 0;
+            this.colMaTinhTrangPhong.VisibleIndex = 1;
             this.colMaTinhTrangPhong.Width = 130;
             // 
             // colTenTinhTrang
             // 
             this.colTenTinhTrang.Caption = "Tên Tình Trạng";
-            this.colTenTinhTrang.FieldName = "TenTinhTrang";
+            this.colTenTinhTrang.FieldName = "TenTinhTrangPhong";
             this.colTenTinhTrang.Name = "colTenTinhTrang";
             this.colTenTinhTrang.Visible = true;
-            this.colTenTinhTrang.VisibleIndex = 1;
+            this.colTenTinhTrang.VisibleIndex = 2;
             this.colTenTinhTrang.Width = 241;
             // 
             // colHinhAnh
             // 
             this.colHinhAnh.Caption = "Hình Ảnh";
             this.colHinhAnh.ColumnEdit = this.picEdit;
+            this.colHinhAnh.FieldName = "HinhAnh";
             this.colHinhAnh.Name = "colHinhAnh";
-            this.colHinhAnh.Visible = true;
-            this.colHinhAnh.VisibleIndex = 2;
             this.colHinhAnh.Width = 162;
+            // 
+            // picEdit
+            // 
+            this.picEdit.Name = "picEdit";
+            this.picEdit.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.ByteArray;
+            this.picEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             // 
             // colMauSac
             // 
             this.colMauSac.Caption = "Màu Sắc";
             this.colMauSac.ColumnEdit = this.colorTinhTrang;
+            this.colMauSac.FieldName = "MauSac";
             this.colMauSac.Name = "colMauSac";
-            this.colMauSac.Visible = true;
-            this.colMauSac.VisibleIndex = 3;
             this.colMauSac.Width = 157;
             // 
             // colorTinhTrang
@@ -177,11 +188,6 @@
             this.ucMenu.Size = new System.Drawing.Size(736, 26);
             this.ucMenu.TabIndex = 4;
             // 
-            // picEdit
-            // 
-            this.picEdit.Name = "picEdit";
-            this.picEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            // 
             // frmTinhTrangPhong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -195,13 +201,13 @@
             this.Load += new System.EventHandler(this.frmTinhTrangPhong_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorTinhTrang)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picEdit)).EndInit();
             this.ResumeLayout(false);
 
         }

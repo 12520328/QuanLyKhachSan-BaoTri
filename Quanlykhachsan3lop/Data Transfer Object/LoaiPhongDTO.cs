@@ -12,7 +12,9 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
         private string _tenLoaiPhong;
         private int _maBangGia;
         private int _soLuongNguoiToiDa;
-              
+        private decimal _giaTheoNgay;
+
+        
 
         #region "Properties"
         public int MaLoaiPhong
@@ -34,6 +36,11 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
         {
             get { return _soLuongNguoiToiDa; }
             set { _soLuongNguoiToiDa = value; }
+        }
+        public decimal GiaTheoNgay
+        {
+            get { return _giaTheoNgay; }
+            set { _giaTheoNgay = value; }
         }
         #endregion
 

@@ -8,13 +8,22 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
 {
     public class HoaDonDTO
     {
+        private int _maHoaDon;
+
+        public int MaHoaDon
+        {
+            get { return _maHoaDon; }
+            set { _maHoaDon = value; }
+        }
         private string _soHoaDon;       
         private int _maNguoiDung;        
-        private int _maKhachHang;                
-        private int _maThuePhong;        
+        private int _maKhachHang;
+        private int _maDatPhong;       
         private decimal _tongTien;       
-        private DateTime _ngayLap;        
-        private decimal _tienKhachTra;
+        private DateTime _ngayLap;
+        private int _maSuDungDichVu;
+
+      
         private List<ChiTietHoaDonDTO> _chiTietHoaDon;
 
         
@@ -35,10 +44,10 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
             get { return _maKhachHang; }
             set { _maKhachHang = value; }
         }
-        public int MaThuePhong
+        public int MaSuDungDichVu
         {
-            get { return _maThuePhong; }
-            set { _maThuePhong = value; }
+            get { return _maSuDungDichVu; }
+            set { _maSuDungDichVu = value; }
         }
         public decimal TongTien
         {
@@ -50,11 +59,11 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
             get { return _ngayLap; }
             set { _ngayLap = value; }
         }
-        public decimal TienKhachTra
+        public int MaDatPhong
         {
-            get { return _tienKhachTra; }
-            set { _tienKhachTra = value; }
-        }
+            get { return _maDatPhong; }
+            set { _maDatPhong = value; }
+        }       
         public List<ChiTietHoaDonDTO> ChiTietHoaDon
         {
             get { return _chiTietHoaDon; }

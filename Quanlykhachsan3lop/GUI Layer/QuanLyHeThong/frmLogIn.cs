@@ -41,19 +41,23 @@ namespace Quanlykhachsan3lop.Màn_Hình
                     this.Hide();
                     //Send thông tin tài khoản đăng nhập qua form chính  
                     frmMain.user = new NguoiDungDTO();
-                    if (!string.IsNullOrEmpty(nguoiDungBUS.LayLoaiNguoiDung(txtTenTaiKhoan.Text)) 
-                        && !string.IsNullOrEmpty(nguoiDungBUS.LayHoTenNguoiDung(txtTenTaiKhoan.Text)))
-                    {
-                        frmMain.user.MaNguoiDung = nguoiDungBUS.LayMaNguoiDung(txtTenTaiKhoan.Text);
-                        frmMain.user.HoVaTen = nguoiDungBUS.LayHoTenNguoiDung(txtTenTaiKhoan.Text);
-                        frmMain.user.LoaiNguoiDung =nguoiDungBUS.LayLoaiNguoiDung(txtTenTaiKhoan.Text);                    
-                    }
-                    frmMain.user.MatKhau = txtMatKhau.Text;
-                    frmMain.user.TenNguoiDung = txtTenTaiKhoan.Text;
-                    if(txtTenTaiKhoan.Text == "admin")
+                    if (txtTenTaiKhoan.Text == "admin")
                     {
                         frmMain.user.LoaiNguoiDung = "QuanTriHeThong";
+
                     }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(nguoiDungBUS.LayLoaiNguoiDung(txtTenTaiKhoan.Text))
+                            && !string.IsNullOrEmpty(nguoiDungBUS.LayHoTenNguoiDung(txtTenTaiKhoan.Text)))
+                        {
+                            frmMain.user.MaNguoiDung = nguoiDungBUS.LayMaNguoiDung(txtTenTaiKhoan.Text);
+                            frmMain.user.HoVaTen = nguoiDungBUS.LayHoTenNguoiDung(txtTenTaiKhoan.Text);
+                            frmMain.user.LoaiNguoiDung = nguoiDungBUS.LayLoaiNguoiDung(txtTenTaiKhoan.Text);
+                        }
+                    }
+                    frmMain.user.MatKhau = txtMatKhau.Text;
+                    frmMain.user.TenNguoiDung = txtTenTaiKhoan.Text;                  
 
 
                     Form f = new frmMain();
@@ -61,6 +65,7 @@ namespace Quanlykhachsan3lop.Màn_Hình
                     Thread.Sleep(4000);
                     SplashScreenManager.CloseForm();
                     f.ShowDialog();
+                    
                 }
                 else
                 {

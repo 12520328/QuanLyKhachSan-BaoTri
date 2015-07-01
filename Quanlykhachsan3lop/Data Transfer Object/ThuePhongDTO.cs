@@ -10,10 +10,16 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
     {
         private int _maThuePhong;
         private int _maDatPhong;
-        private int _maPhong;
         private DateTime _ngayThuePhong;
-        private int _soLuongNguoi;
-                
+        private DateTime _gioThuePhong;
+        private List<ChiTietThuePhongDTO> ctThuePhong;
+
+      
+        
+        public ThuePhongDTO()
+        {
+            ctThuePhong = new List<ChiTietThuePhongDTO>();
+        }
 
         #region "Properties"
         public int MaThuePhong
@@ -26,20 +32,20 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
             get { return _maDatPhong; }
             set { _maDatPhong = value; }
         }
-        public int MaPhong
+        public DateTime GioThuePhong
         {
-            get { return _maPhong; }
-            set { _maPhong = value; }
+            get { return _gioThuePhong; }
+            set { _gioThuePhong = value; }
         }
         public DateTime NgayThuePhong
         {
             get { return _ngayThuePhong; }
             set { _ngayThuePhong = value; }
         }
-        public int SoLuongNguoi
+        public List<ChiTietThuePhongDTO> CTThuePhong
         {
-            get { return _soLuongNguoi; }
-            set { _soLuongNguoi = value; }
+            get { return ctThuePhong; }
+            set { ctThuePhong = value; }
         }
         #endregion
     }

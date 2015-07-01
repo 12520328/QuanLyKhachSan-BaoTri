@@ -14,6 +14,7 @@ namespace Quanlykhachsan3lop.Data_Transfer_Object
         private int _maDonViTinh;
         private int _nhomDichVu;
 
+
         #region "Properties"
         public int MaDichVu
         {

@@ -217,5 +217,10 @@ namespace Quanlykhachsan3lop.GUI_Layer.QuanLyKhachSan
             e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction;
             XtraMessageBox.Show(e.ErrorText);
         }
+
+        private void gridControl1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

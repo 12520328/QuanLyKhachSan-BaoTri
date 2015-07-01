@@ -72,8 +72,15 @@
             this.colCachTinh});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
+            this.gridView1.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.gridView1_InvalidRowException);
+            this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
+            this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
             // 
             // colMaKhuyenMai
             // 
@@ -82,7 +89,7 @@
             this.colMaKhuyenMai.Name = "colMaKhuyenMai";
             this.colMaKhuyenMai.OptionsColumn.ReadOnly = true;
             this.colMaKhuyenMai.Visible = true;
-            this.colMaKhuyenMai.VisibleIndex = 0;
+            this.colMaKhuyenMai.VisibleIndex = 1;
             this.colMaKhuyenMai.Width = 118;
             // 
             // colTenKhuyenMai
@@ -91,7 +98,7 @@
             this.colTenKhuyenMai.FieldName = "TenKhuyenMai";
             this.colTenKhuyenMai.Name = "colTenKhuyenMai";
             this.colTenKhuyenMai.Visible = true;
-            this.colTenKhuyenMai.VisibleIndex = 1;
+            this.colTenKhuyenMai.VisibleIndex = 2;
             this.colTenKhuyenMai.Width = 153;
             // 
             // colLoaiKhuyenMai
@@ -100,7 +107,7 @@
             this.colLoaiKhuyenMai.FieldName = "LoaiKhuyenMai";
             this.colLoaiKhuyenMai.Name = "colLoaiKhuyenMai";
             this.colLoaiKhuyenMai.Visible = true;
-            this.colLoaiKhuyenMai.VisibleIndex = 2;
+            this.colLoaiKhuyenMai.VisibleIndex = 3;
             this.colLoaiKhuyenMai.Width = 143;
             // 
             // colCachTinh
@@ -109,7 +116,7 @@
             this.colCachTinh.FieldName = "CongThuc";
             this.colCachTinh.Name = "colCachTinh";
             this.colCachTinh.Visible = true;
-            this.colCachTinh.VisibleIndex = 3;
+            this.colCachTinh.VisibleIndex = 4;
             this.colCachTinh.Width = 210;
             // 
             // imgTinhTrang
@@ -186,6 +193,7 @@
             this.Controls.Add(this.ucMenu);
             this.Name = "frmKhuyenMai";
             this.Text = "Khuyến Mãi";
+            this.Load += new System.EventHandler(this.frmKhuyenMai_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgTinhTrang)).EndInit();
